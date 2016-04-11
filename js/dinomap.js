@@ -23,6 +23,8 @@ function DinoMap(selector, zoneId, icons, options) {
     this.zoneId = zoneId;
     this.icons = icons;
     this.mapImage = null;
+    this.mapX = 0;
+    this.mapY = 0;
     this.mapWidth = 0;
     this.mapHeight = 0;
     this.jCanvas = null;
@@ -41,6 +43,10 @@ function DinoMap(selector, zoneId, icons, options) {
     if (this.jCanvas.get(0).getContext == null) {
 	throw new Error("Cannot get canvas context");
     };
+    if (options) {
+        this.mapX = options.x || 0;
+        this.mapY = options.y || 0;
+    }
     this.loadMapBackground(options);
     return this;
 }
@@ -67,13 +73,16 @@ DinoMap.prototype = {
     },
     drawBackground: function() {
         this.context.globalAlpha = 1.0;
-	this.context.clearRect(0, 0, this.mapWidth, this.mapHeight);
-        this.context.drawImage(this.mapImage, 0, 0);
+	this.context.clearRect(this.mapX, this.mapY,
+                               this.mapWidth, this.mapHeight);
+        this.context.drawImage(this.mapImage, this.mapX, this.mapY);
         return this;
     },
     drawPaths: function() {
-        var zone = zones[this.zoneId];
+        var zone = dinorpg_zones[this.zoneId];
         var ctx = this.context;
+        var mapX = this.mapX;
+        var mapY = this.mapY;
         // draw conditional paths
         ctx.lineWidth = 5;
         ctx.strokeStyle = "#f99";
@@ -85,9 +94,9 @@ DinoMap.prototype = {
                 for (var i = 0; i < zone[pos].linkscond.length; i += 2) {
                     var condition = zone[pos].linkscond[i];
                     var dest = zone[pos].linkscond[i + 1];
-                    ctx.moveTo(zone[pos].x, zone[pos].y);
+                    ctx.moveTo(mapX + zone[pos].x, mapY + zone[pos].y);
                     if (zone[dest]) {
-                        ctx.lineTo(zone[dest].x, zone[dest].y);
+                        ctx.lineTo(mapX + zone[dest].x, mapY + zone[dest].y);
                     } else {
                         ctx.lineTo(0, 0);
                     }
@@ -103,9 +112,9 @@ DinoMap.prototype = {
             //console.log("permanent paths from", pos, ":", zone[pos].links);
             zone[pos].links.forEach(function(dest) {
                 //console.log(" - ", pos, "(", zone[pos].x, ",", zone[pos].y, ") to ", dest, "(", zone[dest].x, ",", zone[dest].y, ")");
-                ctx.moveTo(zone[pos].x, zone[pos].y);
+                ctx.moveTo(mapX + zone[pos].x, mapY + zone[pos].y);
                 if (zone[dest]) {
-                    ctx.lineTo(zone[dest].x, zone[dest].y);
+                    ctx.lineTo(mapX + zone[dest].x, mapY + zone[dest].y);
                 } else {
                     ctx.lineTo(0, 0);
                 }
@@ -116,14 +125,17 @@ DinoMap.prototype = {
         return this;
     },
     drawLocations: function() {
-        var zone = zones[this.zoneId];
+        var zone = dinorpg_zones[this.zoneId];
         var ctx = this.context;
+        var mapX = this.mapX;
+        var mapY = this.mapY;
         var mapWidth = this.mapWidth;
         var mapHeight = this.mapHeight;
         var icons = this.icons;
         // draw icons
         Object.keys(zone).forEach(function(pos) {
-            icons.draw(ctx, zone[pos].x - 12, zone[pos].y - 12, zone[pos].icon);
+            icons.draw(ctx, mapX + zone[pos].x - 12, mapY + zone[pos].y - 12,
+                       zone[pos].icon);
         });
         // draw labels
         ctx.textAlign = "start";
@@ -159,10 +171,13 @@ DinoMap.prototype = {
                 if (boxY < 0) {
                     boxY = 0;
                 }
+                boxX += mapX;
+                boxY += mapY;
                 ctx.fillRect(boxX, boxY, textWidth, 2 * boxRadius);
                 ctx.beginPath();
                 ctx.arc(boxX, boxY + boxRadius, boxRadius, 0, Math.PI * 2);
-                ctx.arc(boxX + textWidth, boxY + boxRadius, boxRadius, 0, Math.PI * 2);
+                ctx.arc(boxX + textWidth, boxY + boxRadius,
+                        boxRadius, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.fillStyle = "#ffee92";
                 ctx.fillText(zone[pos].name, boxX, boxY + 2);
@@ -198,8 +213,10 @@ DinoMap.prototype = {
         this.mapImage = new Image();
         this.mapImage.onload = (function(obj) {
             return function() {
-                obj.mapWidth = this.naturalWidth;
-                obj.mapHeight = this.naturalHeight;
+                obj.mapWidth = this.naturalWidth + 60; // !!!!!!!!!!!!!
+                obj.mapHeight = this.naturalHeight + 40;
+                obj.mapX = 30;
+                obj.mapY = 20;
                 obj.jCanvas.prop({
                     width: obj.mapWidth,
                     height: obj.mapHeight,

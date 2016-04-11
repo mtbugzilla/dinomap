@@ -18,7 +18,21 @@
 
 "use strict";
 
-var zones = [
+var dinorpg_zone_names = [
+    "Royaume de Dinoville",
+    "Grand Tout Chaud",
+    "Îles Atlanteinées",
+    "Forêt de Grumel",
+    "Monde Sombre",
+    "Steppes Magnétiques",
+    "Ouest de Dinoville",
+    "Île aux Monstres",
+    "Île Céleste (Nimbao)",
+    "Caushemesh",
+    "Test",
+];
+
+var dinorpg_zones = [
     // Zone 0 : Royaume de Dinoville
     {
         "dnv": {
@@ -267,7 +281,7 @@ var zones = [
             "links": [],
         },
     },
-    // Zone 2 : Iles Atlanteinées
+    // Zone 2 : Îles Atlanteinées
     {
         "ilewkk": {
             "name": "L'Ile Waïkiki",
@@ -847,7 +861,7 @@ var zones = [
             "links": [],
         },
     },
-    // Zone 7 : Ile aux Monstres
+    // Zone 7 : Île aux Monstres
     {
         "mport": {
             "name": "Port Monstrueux",
@@ -934,7 +948,7 @@ var zones = [
             "links": [],
         },
     },
-    // Zone 8 : Ile Celeste (Nimbao)
+    // Zone 8 : Île Céleste (Nimbao)
     {
         "iroche": {
             "name": "Tête de l'île",
