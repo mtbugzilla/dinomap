@@ -293,7 +293,7 @@ var dinorpg_zones = [
         },
         "corail": {
             "name": "Mines de Corail",
-            "desc": "",
+            "desc": "Jadis enfouies sous l'eau, de grandes quantités de corail se sont retrouvées un jour propulsées à la surface. Leur extraordinaire solidité fait du Corail un matériel très utilisé à Dinoland. C'est pour cette raison que cet endroit est désormais une immense mine où travaillent des centaines de personnes.",
             "x": 479,
             "y": 142,
             "icon": "cavern",
@@ -304,7 +304,8 @@ var dinorpg_zones = [
         },
         "marais": {
             "name": "Marais Collant",
-            "desc": "",
+            "desc": "Ce marais qui occupe le milieu de l'archipel est un véritable problème pour les voyageurs ! Suivant les jours, il change d'état. On dit qu'il existe depuis plusieurs millénaires, et certains pensent même qu'il s'agit d'un gigantesque être vivant doué d'un très mauvais sens de l'humour.",
+// "Aujourd'hui, les eaux sont basses : vous pouvez vous déplacer normalement.",
             "x": 336,
             "y": 124,
             "icon": "default",
@@ -1030,6 +1031,22 @@ var dinorpg_zones = [
             "x": 90,
             "y": 100,
             "icon": "cavern",
+            "links": [],
+        },
+        "prison": {
+            "name": "Priranèse",
+            "desc": "",
+            "x": 580,
+            "y": 305,
+            "icon": "cavern",
+            "links": [],
+        },
+        "ilac2": {
+            "name": "Aile Ouest du Dragon",
+            "desc": "",
+            "x": 550,
+            "y": 380,
+            "icon": "default",
             "links": [],
         },
         "voie": {
