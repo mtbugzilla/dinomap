@@ -151,28 +151,26 @@ DinoMap.prototype = {
                 }
                 var textWidth = ctx.measureText(zone[pos].name).width;
                 var boxRadius = 7;
-                var boxX = zone[pos].x - textWidth / 2;
-                var boxY = zone[pos].y + 9;
+                var boxX = mapX + zone[pos].x - textWidth / 2;
+                var boxY = mapY + zone[pos].y + 9;
                 if (zone[pos].labelx) {
                     boxX += zone[pos].labelx;
                 }
                 if (zone[pos].labely) {
                     boxY += zone[pos].labely;
                 }
-                if (boxX + textWidth + boxRadius > mapWidth) {
-                    boxX = mapWidth - textWidth - boxRadius;
+                if (boxX + textWidth + boxRadius > mapX + mapWidth) {
+                    boxX = mapX + mapWidth - textWidth - boxRadius;
                 }
-                if (boxX < boxRadius) {
-                    boxX = boxRadius;
+                if (boxX < mapX + boxRadius) {
+                    boxX = mapX + boxRadius;
                 }
-                if (boxY + 2 * boxRadius > mapHeight) {
-                    boxY = mapHeight - 2 * boxRadius;
+                if (boxY + 2 * boxRadius > mapY + mapHeight) {
+                    boxY = mapY + mapHeight - 2 * boxRadius;
                 }
-                if (boxY < 0) {
-                    boxY = 0;
+                if (boxY < mapY) {
+                    boxY = mapY;
                 }
-                boxX += mapX;
-                boxY += mapY;
                 ctx.fillRect(boxX, boxY, textWidth, 2 * boxRadius);
                 ctx.beginPath();
                 ctx.arc(boxX, boxY + boxRadius, boxRadius, 0, Math.PI * 2);
@@ -213,13 +211,13 @@ DinoMap.prototype = {
         this.mapImage = new Image();
         this.mapImage.onload = (function(obj) {
             return function() {
-                obj.mapWidth = this.naturalWidth + 60; // !!!!!!!!!!!!!
-                obj.mapHeight = this.naturalHeight + 40;
+                obj.mapWidth = this.naturalWidth;
+                obj.mapHeight = this.naturalHeight;
                 obj.mapX = 30;
                 obj.mapY = 20;
                 obj.jCanvas.prop({
-                    width: obj.mapWidth,
-                    height: obj.mapHeight,
+                    width: obj.mapX + obj.mapWidth,
+                    height: obj.mapY + obj.mapHeight,
                 });
 	        obj.context = obj.jCanvas.get(0).getContext('2d');
                 if (! obj.context) {
