@@ -1,0 +1,269 @@
+body {
+  font-family: Play, sans-serif;
+  text-align: center;
+  min-width: 770px;
+  background-color: #f0f0f0;
+/*  background-image:url('images/rectangles_f0f0f0.png'); */
+  background-image:url('images/metal_plates_e1e1e1.jpg');
+  color: #333;
+}
+
+/* Header ------------------------------------------------------------------- */
+h1 {
+  font-family: Play, sans-serif;
+  font-size: 48px;
+  margin: 0.2em;
+  text-shadow: 4px 4px 4px #ccc;
+  color: #fff;
+}
+
+/* Menu --------------------------------------------------------------------- */
+ul.menu {
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  box-shadow: inset 1px 1px 6px #aaa;
+  -moz-box-shadow: inset 1px 1px 6px #aaa;
+  -webkit-box-shadow: inset 1px 1px 6px #aaa;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+ul.menu li {
+  float: left;
+}
+ul.menu li.right {
+  float: right;
+}
+ul.menu li.right a,
+ul.menu li.right b {
+  border-left: 1px solid #ccc;
+}
+ul.menu li a,
+ul.menu li b {
+  border-right: 1px solid #ccc;
+  display: block;
+  padding: 4px 16px;
+  min-width: 60px;
+  font-weight: bold;
+  color: #aaa;
+  text-align: center;
+  text-decoration: none;
+}
+ul.menu li.active a {
+  color: #99f;
+}
+ul.menu li a:hover {
+  background-color: #e8e8e8;
+  color: #99f;
+  padding: 5px 15px 3px 17px;
+  text-shadow: none;
+  text-decoration: none;
+  box-shadow: inset 2px 2px 4px #aaa;
+  -moz-box-shadow: inset 2px 2px 4px #aaa;
+  -webkit-box-shadow: inset 2px 2px 4px #aaa;
+}
+/* submenu */
+ul.menu ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  box-shadow: 1px 1px 4px #aaa;
+  -moz-box-shadow: 1px 1px 4px #aaa;
+  -webkit-box-shadow: 1px 1px 4px #aaa;
+}
+ul.menu li:hover > ul {
+  display: block;
+}
+ul.menu ul li {
+  float: none;
+  position: relative;
+}
+ul.menu ul li a {
+  text-align: left;
+  white-space: nowrap;
+}
+/* clearfix */
+ul.menu:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+/* Page contents ------------------------------------------------------------ */
+#page {
+  background-color: #f8f8f8;
+  color: #000;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  box-shadow: inset 1px 1px 6px #aaa;
+  -moz-box-shadow: inset 1px 1px 6px #aaa;
+  -webkit-box-shadow: inset 1px 1px 6px #aaa;
+  width: 760px;
+  min-height: 400px;
+  margin: 0 auto;
+  padding: 0;
+  text-align: left;
+}
+#pagecontents {
+  margin: 16px;
+  padding-bottom: 16px;
+}
+#page-mini {
+  background-color: #f8f8f8;
+  color: #000;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  box-shadow: inset 1px 1px 6px #aaa;
+  -moz-box-shadow: inset 1px 1px 6px #aaa;
+  -webkit-box-shadow: inset 1px 1px 6px #aaa;
+  width: 760px;
+  min-height: 100px;
+  margin: 0 auto;
+  padding: 0;
+  text-align: left;
+}
+#pagecontents-mini {
+  margin: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  font-size: 14pt;
+}
+/* Text styles -------------------------------------------------------------- */
+
+a {
+  color: #339;
+  text-decoration: none;
+}
+a:hover {
+  color: #33c;
+  text-shadow: 1px 1px 6px #aaa;
+  text-decoration: none;
+}
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+/* Message boxes ------------------------------------------------------------ */
+.note_box {
+  color: #333;
+  background: #f0f0f0 url('images/tango-attach.png') no-repeat 8px center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  box-shadow: 1px 1px 4px #aaa;
+  -moz-box-shadow: 1px 1px 4px #aaa;
+  -webkit-box-shadow: 1px 1px 4px #aaa;
+  margin: 16px;
+  padding: 16px;
+  padding-left: 48px;
+}
+
+.info_box {
+  color: #393;
+  background: #f0fff0 url('images/tango-info.png') no-repeat 8px center;
+  border: 1px solid #cfc;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  box-shadow: 1px 1px 4px #aaa;
+  -moz-box-shadow: 1px 1px 4px #aaa;
+  -webkit-box-shadow: 1px 1px 4px #aaa;
+  margin: 16px;
+  padding: 16px;
+  padding-left: 48px;
+}
+
+.error_box {
+  color: #933;
+  background: #fff0f0 url('images/tango-warning.png') no-repeat 8px center;
+  border: 1px solid #fcc;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  box-shadow: 1px 1px 4px #aaa;
+  -moz-box-shadow: 1px 1px 4px #aaa;
+  -webkit-box-shadow: 1px 1px 4px #aaa;
+  margin: 16px;
+  padding: 16px;
+  padding-left: 48px;
+}
+
+/* Buttons ------------------------------------------------------------------ */
+.buttonbox {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+/* clearfix */
+.buttonbox:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+.button {
+  color: #aaa;
+  background-color: #f0f0f0;
+  border-right: 1px solid #ccc;
+  display: block;
+  padding: 4px 16px;
+  text-align: center;
+  text-decoration: none;
+  font-family: Play, sans-serif;
+  font-size: 10pt;
+  float: left;
+}
+.button:hover {
+  color: #99f;
+  background-color: #e8e8e8;
+  padding: 5px 15px 3px 17px;
+  text-shadow: none;
+  text-decoration: none;
+  box-shadow: inset 1px 1px 2px #aaa;
+  -moz-box-shadow: inset 1px 1px 2px #aaa;
+  -webkit-box-shadow: inset 1px 1px 2px #aaa;
+}
+input.button::-moz-focus-inner /*Remove button padding in FF*/
+{
+  border: 0;
+  padding: 0;
+}
+input[type="text"],
+textarea {
+  background-color: #f0f0ff;
+  border: 1px solid #999;
+  outline: 1px solid #aaa;
+  color: #333;
+  font-family: monospace;
+}
+/* Footer ------------------------------------------------------------------- */
+#footer {
+  color: #ccc;
+}
+#footer a {
+  color: #ccc;
+  text-decoration: none;
+}
+#footer a:hover {
+  color: #99f;
+  text-shadow: none;
+  text-decoration: none;
+}
+/* Misc --------------------------------------------------------------------- */
+ol[type="1"] li {
+  margin-top: 8pt;
+}

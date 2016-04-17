@@ -1,0 +1,302 @@
+body {
+  font-family: "Century Gothic","Arial","Trebuchet MS",Verdana,sans-serif;
+  font-size: 10pt;
+  text-align: center;
+  min-width: 770px;
+  color: white;
+  background-color: #100c0b;
+  background-image:url('images/dirt.jpg');
+}
+
+/* Header ------------------------------------------------------------------- */
+h1 {
+  font-family: "Trade Winds", cursive;
+  font-size: 40pt;
+  font-weight: bold;
+  margin: 2px;
+  text-shadow: 4px 4px 4px #120e0c;
+  color: #f0d79e;
+}
+
+h2 {
+  color: #ddab76;
+}
+
+/* Menu --------------------------------------------------------------------- */
+ul.menu {
+  background-color: #4a261e;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  box-shadow: inset 1px 1px 6px #1d2020;
+  -moz-box-shadow: inset 1px 1px 6px #1d2020;
+  -webkit-box-shadow: inset 1px 1px 6px #1d2020;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+ul.menu li {
+  float: left;
+}
+ul.menu li.right {
+  float: right;
+}
+ul.menu li.right a,
+ul.menu li.right b {
+  border-left: 1px solid #6c7188;
+}
+ul.menu li a,
+ul.menu li b {
+  color: white;
+  background-color: #4e5162;
+  border-top: 1px solid $6c7188;
+  outline: 1px solid #1d2028;
+  display: block;
+  padding: 4px 16px;
+  min-width: 60px;
+  text-align: center;
+  text-decoration: none;
+}
+ul.menu li.active a {
+  color: #f0d79e;
+}
+ul.menu li a:hover {
+  color: #f0d79e;
+  background-color: #3b4151;
+  border-color: #1d2028;
+  padding: 5px 15px 3px 17px;
+  text-shadow: none;
+  text-decoration: none;
+  box-shadow: inset 2px 2px 4px #1d2020;
+  -moz-box-shadow: inset 2px 2px 4px #1d2020;
+  -webkit-box-shadow: inset 2px 2px 4px #1d2020;
+}
+/* submenu */
+ul.menu ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  border: 1px solid #ff6666;
+  background-color: #4a261e;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  box-shadow: 1px 1px 4px #1d2020;
+  -moz-box-shadow: 1px 1px 4px #1d2020;
+  -webkit-box-shadow: 1px 1px 4px #1d2020;
+}
+ul.menu li:hover > ul {
+  display: block;
+}
+ul.menu ul li {
+  float: none;
+  position: relative;
+}
+ul.menu ul li a {
+  text-align: left;
+  white-space: nowrap;
+}
+/* clearfix */
+ul.menu:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+/* Page contents ------------------------------------------------------------ */
+#page {
+  background-color: #693e29;
+  color: #fff;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  box-shadow: inset 1px 1px 8px #1d2020;
+  -moz-box-shadow: inset 1px 1px 8px #1d2020;
+  -webkit-box-shadow: inset 1px 1px 8px #1d2020;
+  width: 760px;
+  min-height: 400px;
+  margin: 0 auto;
+  padding: 0;
+  text-align: left;
+}
+#pagecontents {
+  margin: 16px;
+  padding-bottom: 16px;
+}
+#page-mini {
+  background-color: #693e29;
+  color: #fff;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  box-shadow: inset 1px 1px 8px #1d2020;
+  -moz-box-shadow: inset 1px 1px 8px #1d2020;
+  -webkit-box-shadow: inset 1px 1px 8px #1d2020;
+  width: 760px;
+  min-height: 100px;
+  margin: 0 auto;
+  padding: 0;
+  text-align: left;
+}
+#pagecontents-mini {
+  margin: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  font-size: 14pt;
+}
+/* Text styles -------------------------------------------------------------- */
+
+a {
+  color: #ddab76;
+  text-decoration: none;
+}
+a:hover {
+  color: white;
+  text-shadow: 1px 1px 6px #1d2020;
+  text-decoration: none;
+}
+
+em {
+  color: #f0d79e;
+  font-style: italic;
+}
+
+strong {
+  color: #afb3cf;
+  font-weight: bold;
+}
+
+/* Message boxes ------------------------------------------------------------ */
+.note_box {
+  color: white;
+  background: #3b4151 url('images/tango-attach.png') no-repeat 8px center;
+  border: 1px solid #6b7087;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  box-shadow: 1px 1px 4px #1d2020;
+  -moz-box-shadow: 1px 1px 4px #1d2020;
+  -webkit-box-shadow: 1px 1px 4px #1d2020;
+  margin: 16px;
+  padding: 16px;
+  padding-left: 48px;
+}
+.note_box strong {
+  color: white;
+}
+.note_box em {
+  color: white;
+}
+.note_box a {
+  color: #feb500;
+}
+
+.info_box {
+  color: white;
+  background: #553c53 url('images/tango-info.png') no-repeat 8px center;
+  border: 1px solid #feb500;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  box-shadow: 1px 1px 4px #1d2020;
+  -moz-box-shadow: 1px 1px 4px #1d2020;
+  -webkit-box-shadow: 1px 1px 4px #1d2020;
+  margin: 16px;
+  padding: 16px;
+  padding-left: 48px;
+}
+.info_box strong {
+  color: white;
+}
+.info_box em {
+  color: white;
+}
+.info_box a {
+  color: #feb500;
+}
+
+.error_box {
+  color: white;
+  background: #5c0000 url('images/tango-warning.png') no-repeat 8px center;
+  border: 1px solid #470000;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  box-shadow: 1px 1px 4px #1d2020;
+  -moz-box-shadow: 1px 1px 4px #1d2020;
+  -webkit-box-shadow: 1px 1px 4px #1d2020;
+  margin: 16px;
+  padding: 16px;
+  padding-left: 48px;
+}
+
+/* Buttons ------------------------------------------------------------------ */
+.buttonbox {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+/* clearfix */
+.buttonbox:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+.button {
+  color: white;
+  background-color: #4e5162;
+  border: none;
+  outline: 1px solid #1d2028;
+  display: block;
+  padding: 4px 16px;
+  min-width: 60px;
+  text-align: center;
+  text-decoration: none;
+  font-family: "Century Gothic","Arial","Trebuchet MS",Verdana,sans-serif;
+  font-size: 10pt;
+  float: left;
+}
+.button:hover {
+  color: #f0d79e;
+  background-color: #3b4151;
+  padding: 5px 15px 3px 17px;
+  text-shadow: none;
+  text-decoration: none;
+  box-shadow: inset 1px 1px 2px #1d2020;
+  -moz-box-shadow: inset 1px 1px 2px #1d2020;
+  -webkit-box-shadow: inset 1px 1px 2px #1d2020;
+}
+input.button::-moz-focus-inner /*Remove button padding in FF*/
+{
+  border: 0;
+  padding: 0;
+}
+input[type="text"],
+textarea {
+  background-color: #a4935d;
+  border: 1px solid #f0d79e;
+  outline: 1px solid #5c2b20;
+  color: #3b3249;
+  font-family: monospace;
+}
+/* Footer ------------------------------------------------------------------- */
+#footer {
+  font-size: 8pt;
+  color: #965c36;
+}
+#footer a {
+  color: #965c36;
+  text-decoration: none;
+}
+#footer a:hover {
+  color: #ddab76;
+  text-shadow: none;
+  text-decoration: none;
+}
+/* Misc --------------------------------------------------------------------- */
+ol[type="1"] li {
+  margin-top: 8pt;
+}
+.users th {
+  text-align: center;
+}
