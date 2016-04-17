@@ -3,8 +3,8 @@ body {
   text-align: center;
   min-width: 770px;
   background-color: #f0f0f0;
-/*  background-image:url('images/rectangles_f0f0f0.png'); */
-  background-image:url('images/metal_plates_e1e1e1.jpg');
+/*  background-image:url('../images/rectangles_f0f0f0.png'); */
+  background-image:url('../images/metal_plates_e1e1e1.jpg');
   color: #333;
 }
 
@@ -160,7 +160,7 @@ strong {
 /* Message boxes ------------------------------------------------------------ */
 .note_box {
   color: #333;
-  background: #f0f0f0 url('images/tango-attach.png') no-repeat 8px center;
+  background: #f0f0f0 url('../images/tango-attach.png') no-repeat 8px center;
   border: 1px solid #ccc;
   border-radius: 4px;
   -moz-border-radius: 4px;
@@ -175,7 +175,7 @@ strong {
 
 .info_box {
   color: #393;
-  background: #f0fff0 url('images/tango-info.png') no-repeat 8px center;
+  background: #f0fff0 url('../images/tango-info.png') no-repeat 8px center;
   border: 1px solid #cfc;
   border-radius: 4px;
   -moz-border-radius: 4px;
@@ -190,7 +190,7 @@ strong {
 
 .error_box {
   color: #933;
-  background: #fff0f0 url('images/tango-warning.png') no-repeat 8px center;
+  background: #fff0f0 url('../images/tango-warning.png') no-repeat 8px center;
   border: 1px solid #fcc;
   border-radius: 4px;
   -moz-border-radius: 4px;

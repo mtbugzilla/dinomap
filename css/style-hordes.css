@@ -5,7 +5,7 @@ body {
   min-width: 770px;
   color: white;
   background-color: #100c0b;
-  background-image:url('images/dirt.jpg');
+  background-image:url('../images/dirt.jpg');
 }
 
 /* Header ------------------------------------------------------------------- */
@@ -169,7 +169,7 @@ strong {
 /* Message boxes ------------------------------------------------------------ */
 .note_box {
   color: white;
-  background: #3b4151 url('images/tango-attach.png') no-repeat 8px center;
+  background: #3b4151 url('../images/tango-attach.png') no-repeat 8px center;
   border: 1px solid #6b7087;
   border-radius: 4px;
   -moz-border-radius: 4px;
@@ -193,7 +193,7 @@ strong {
 
 .info_box {
   color: white;
-  background: #553c53 url('images/tango-info.png') no-repeat 8px center;
+  background: #553c53 url('../images/tango-info.png') no-repeat 8px center;
   border: 1px solid #feb500;
   border-radius: 4px;
   -moz-border-radius: 4px;
@@ -217,7 +217,7 @@ strong {
 
 .error_box {
   color: white;
-  background: #5c0000 url('images/tango-warning.png') no-repeat 8px center;
+  background: #5c0000 url('../images/tango-warning.png') no-repeat 8px center;
   border: 1px solid #470000;
   border-radius: 4px;
   -moz-border-radius: 4px;
