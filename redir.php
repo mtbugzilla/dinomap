@@ -150,14 +150,16 @@ function get_db_user_info() {
   $sql_uid = db_quote_int($_SESSION['uid']);
   $sql_avatar = db_quote_str($mysqli, $_SESSION['avatar']);
   $sql_name = db_quote_str($mysqli, $_SESSION['name'], "'???'");
+  $sql_locale = db_quote_str($mysqli, $_SESSION['locale']);
   $result = $mysqli->query("SELECT * FROM users WHERE uid=$sql_uid");
   if ($row = $result->fetch_assoc()) {
     // mise à jour d'un utilisateur déjà connu
     $_SESSION['role'] = check_role_upgrade($row['role']);
     if (($_SESSION['name'] != $row['name'])
         || ($_SESSION['avatar'] != $row['avatar'])
+        || ($_SESSION['locale'] != $row['locale'])
         || ($_SESSION['role'] != $row['role'])) {
-      $mysqli->query("UPDATE users SET name=$sql_name, avatar=$sql_avatar, role=" . $_SESSION['role'] . ", mtime=NOW(), atime=NOW() WHERE uid=$sql_uid");
+      $mysqli->query("UPDATE users SET name=$sql_name, avatar=$sql_avatar, locale=$sql_locale, role=" . $_SESSION['role'] . ", mtime=NOW(), atime=NOW() WHERE uid=$sql_uid");
     } else {
       $mysqli->query("UPDATE users SET atime=NOW() WHERE uid=$sql_uid");
     }
@@ -170,7 +172,7 @@ function get_db_user_info() {
   } else {
     // création des données pour un nouvel utilisateur
     $_SESSION['role'] = check_role_upgrade(ROLE_NEWBIE);
-    $mysqli->query("INSERT INTO users (uid, name, avatar, locale, role, ctime, mtime, atime) VALUES ($sql_uid, $sql_name, $sql_avatar, " . $_SESSION['locale'] . ", " . $_SESSION['role'] . ", NOW(), NOW(), NOW())");
+    $mysqli->query("INSERT INTO users (uid, name, avatar, locale, role, ctime, mtime, atime) VALUES ($sql_uid, $sql_name, $sql_avatar, $sql_locale, " . $_SESSION['role'] . ", NOW(), NOW(), NOW())");
   }
   $result->free();
   $mysqli->close();
