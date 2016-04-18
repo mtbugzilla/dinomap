@@ -88,8 +88,10 @@ function get_twinoid_user_info() {
   }
   $_SESSION['uid'] = intval($json->id);
   $_SESSION['name'] = $json->name;
-  $_SESSION['locale'] = $json->locale;
-  //  $_SESSION['sites'] = $json->sites;
+  if (! isset($_SESSION['locale'])) {
+    $_SESSION['locale'] = $json->locale;
+  }
+  //$_SESSION['sites'] = $json->sites;
   $_SESSION['h_score'] = 0;
   $_SESSION['t_score'] = 0;
   $_SESSION['t_nulls'] = 0;
@@ -153,7 +155,7 @@ function get_db_user_info() {
   $sql_locale = db_quote_str($mysqli, $_SESSION['locale']);
   $result = $mysqli->query("SELECT * FROM users WHERE uid=$sql_uid");
   if ($row = $result->fetch_assoc()) {
-    // mise à jour d'un utilisateur déjà connu
+    // The user is already known.  Update the database.
     $_SESSION['role'] = check_role_upgrade($row['role']);
     if (($_SESSION['name'] != $row['name'])
         || ($_SESSION['avatar'] != $row['avatar'])
@@ -170,7 +172,7 @@ function get_db_user_info() {
       $_SESSION['dimgs'] = $row['dimgs'];
     }
   } else {
-    // création des données pour un nouvel utilisateur
+    // This is a new user.  Create a new entry for this user.
     $_SESSION['role'] = check_role_upgrade(ROLE_NEWBIE);
     $mysqli->query("INSERT INTO users (uid, name, avatar, locale, role, ctime, mtime, atime) VALUES ($sql_uid, $sql_name, $sql_avatar, $sql_locale, " . $_SESSION['role'] . ", NOW(), NOW(), NOW())");
   }
@@ -181,11 +183,11 @@ function get_db_user_info() {
 
 // Documentation : http://twinoid.com/developers/doc
 if (isset($_GET['state'])) {
-  // Do the reverse of what is done by twin_auth_href()
-  $redir_link = $_GET['state'];
+  // Decode the redirection link that has been encoded by
+  // twin_auth_href() (in session.php)
   $redir_link = str_replace(array("^-", "^=", "^+"),
                             array(";",  "&",  "^"),
-                            $redir_link);
+                            $_GET['state']);
 } else {
   $redir_link = "";
 }
