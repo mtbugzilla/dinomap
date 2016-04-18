@@ -165,11 +165,17 @@ function get_db_user_info() {
     } else {
       $mysqli->query("UPDATE users SET atime=NOW() WHERE uid=$sql_uid");
     }
-    if ($row['dinoz']) {
-      $_SESSION['dinoz'] = $row['dinoz'];
+    if ($row['duid']) {
+      $_SESSION['duid'] = $row['duid'];
     }
-    if ($row['dimgs']) {
-      $_SESSION['dimgs'] = $row['dimgs'];
+    if ($row['dinos']) {
+      $_SESSION['dinos'] = $row['dinos'];
+    }
+    if ($row['dinovars']) {
+      $_SESSION['dinovars'] = $row['dinovars'];
+    }
+    if ($row['collections']) {
+      $_SESSION['collections'] = $row['collections'];
     }
   } else {
     // This is a new user.  Create a new entry for this user.
