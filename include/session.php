@@ -121,10 +121,11 @@ function twin_auth_href($redir_link = NULL) {
       $redir_link = "./";
     }
   }
+  // Simple encoding of the redirection link
   $redir_link = str_replace(array("^",  "&",  ";"),
                             array("^+", "^=", "^-"),
                             $redir_link);
-  return 'https://twinoid.com/oauth/auth?client_id=' . APP_TWINOID_ID . '&amp;response_type=code&amp;state=' . htmlspecialchars($redir_link);
+  return 'https://twinoid.com/oauth/auth?client_id=' . APP_TWINOID_ID . '&amp;response_type=code&amp;scope=' . APP_SCOPES . '&amp;state=' . htmlspecialchars($redir_link);
 }
 
 // Initialization with modified HTTP headers: Cookie, Expires, etc.
@@ -140,7 +141,7 @@ if (isset($_SESSION['token_refresh'])
   exit();
 } elseif (isset($_GET['do']) && ($_GET['do'] == 'logout')) {
   $_SESSION = array();
-  $info_msg = localized_msg(["en" => "Logged out successfully.",
+  $info_msg = localized_msg(["en" => "You have logged out successfully.",
 			     "fr" => "Déconnexion effectuée." ]);
 }
 
