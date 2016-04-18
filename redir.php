@@ -166,16 +166,16 @@ function get_db_user_info() {
       $mysqli->query("UPDATE users SET atime=NOW() WHERE uid=$sql_uid");
     }
     if ($row['duid']) {
-      $_SESSION['duid'] = $row['duid'];
+      $_SESSION['duid'] = intval($row['duid']);
     }
     if ($row['dinos']) {
-      $_SESSION['dinos'] = $row['dinos'];
+      $_SESSION['dinos'] = json_decode($row['dinos']);
     }
     if ($row['dinovars']) {
-      $_SESSION['dinovars'] = $row['dinovars'];
+      $_SESSION['dinovars'] = json_decode($row['dinovars']);
     }
     if ($row['collections']) {
-      $_SESSION['collections'] = $row['collections'];
+      $_SESSION['collections'] = json_decode($row['collections']);
     }
   } else {
     // This is a new user.  Create a new entry for this user.
