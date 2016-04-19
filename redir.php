@@ -124,7 +124,12 @@ function check_role_upgrade($role) {
   return $role;
 }
 
-// Initialize $_SESSION['role'] and updates the database.
+// Initializes $_SESSION['role'] and updates the database.
+//
+// The following elements must already be set in the $_SESSION[]
+// before calling this function: uid, avatar and name.
+// Other values will be read from the database: locale, fr_duid,
+// en_duid, es_duid and de_duid.
 function get_db_user_info() {
   global $error_msg;
   if (! isset($_SESSION['uid']) || ! is_int($_SESSION['uid'])) {
@@ -150,37 +155,42 @@ function get_db_user_info() {
     return false;
   }
   $sql_uid = db_quote_int($_SESSION['uid']);
-  $sql_avatar = db_quote_str($mysqli, $_SESSION['avatar']);
-  $sql_name = db_quote_str($mysqli, $_SESSION['name'], "'???'");
-  $sql_locale = db_quote_str($mysqli, $_SESSION['locale']);
   $result = $mysqli->query("SELECT * FROM users WHERE uid=$sql_uid");
   if ($row = $result->fetch_assoc()) {
-    // The user is already known.  Update the database.
+    // The user is already known.
+    $_SESSION['locale'] = $row['locale'];
     $_SESSION['role'] = check_role_upgrade($row['role']);
-    if (($_SESSION['name'] != $row['name'])
-        || ($_SESSION['avatar'] != $row['avatar'])
-        || ($_SESSION['locale'] != $row['locale'])
-        || ($_SESSION['role'] != $row['role'])) {
-      $mysqli->query("UPDATE users SET name=$sql_name, avatar=$sql_avatar, locale=$sql_locale, role=" . $_SESSION['role'] . ", mtime=NOW(), atime=NOW() WHERE uid=$sql_uid");
-    } else {
+    if ($row['fr_duid']) {
+      $_SESSION['fr_duid'] = intval($row['fr_duid']);
+    }
+    if ($row['en_duid']) {
+      $_SESSION['en_duid'] = intval($row['en_duid']);
+    }
+    if ($row['es_duid']) {
+      $_SESSION['es_duid'] = intval($row['es_duid']);
+    }
+    if ($row['de_duid']) {
+      $_SESSION['de_duid'] = intval($row['de_duid']);
+    }
+    // Update the database (at least atime, others if necessary).
+    if (($_SESSION['name'] == $row['name'])
+        || ($_SESSION['avatar'] == $row['avatar'])
+        || ($_SESSION['role'] == $row['role'])) {
       $mysqli->query("UPDATE users SET atime=NOW() WHERE uid=$sql_uid");
-    }
-    if ($row['duid']) {
-      $_SESSION['duid'] = intval($row['duid']);
-    }
-    if ($row['dinos']) {
-      $_SESSION['dinos'] = json_decode($row['dinos']);
-    }
-    if ($row['dinovars']) {
-      $_SESSION['dinovars'] = json_decode($row['dinovars']);
-    }
-    if ($row['collections']) {
-      $_SESSION['collections'] = json_decode($row['collections']);
+    } else {
+      $sql_avatar = db_quote_str($mysqli, $_SESSION['avatar']);
+      $sql_name = db_quote_str($mysqli, $_SESSION['name'], "'???'");
+      $sql_role = db_quote_int($_SESSION['role']);
+      $mysqli->query("UPDATE users SET name=$sql_name, avatar=$sql_avatar, role=$sql_role, mtime=NOW(), atime=NOW() WHERE uid=$sql_uid");
     }
   } else {
     // This is a new user.  Create a new entry for this user.
+    $sql_avatar = db_quote_str($mysqli, $_SESSION['avatar']);
+    $sql_name = db_quote_str($mysqli, $_SESSION['name'], "'???'");
     $_SESSION['role'] = check_role_upgrade(ROLE_NEWBIE);
-    $mysqli->query("INSERT INTO users (uid, name, avatar, locale, role, ctime, mtime, atime) VALUES ($sql_uid, $sql_name, $sql_avatar, $sql_locale, " . $_SESSION['role'] . ", NOW(), NOW(), NOW())");
+    $sql_role = db_quote_int($_SESSION['role']);
+    $sql_locale = db_quote_str($mysqli, $_SESSION['locale'], "'en'");
+    $mysqli->query("INSERT INTO users (uid, name, avatar, locale, role, ctime, mtime, atime) VALUES ($sql_uid, $sql_name, $sql_avatar, $sql_locale, $sql_role, NOW(), NOW(), NOW())");
   }
   $result->free();
   $mysqli->close();

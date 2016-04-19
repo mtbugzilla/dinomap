@@ -3,13 +3,31 @@ include_once('include/session.php');
 // This file generates JSON output, so we do not include header.php.
 header("Content-Type: application/json; charset=UTF-8");
 
-// Get the list of dinos and trophies using the DinoRPG API
-function get_dinorpg_info() {
+// Base URL for the DinoRPG server of the corresponding language
+function server_base_url($server_lang) {
+  $server_url_map = [
+    "en" => "http://en.dinorpg.com",
+    "fr" => "http://www.dinorpg.com",
+    "es" => "http://es.dinorpg.com",
+    "de" => "http://de.dinorpg.com",
+  ];
+  if (isset($server_lang)
+      && isset($server_url_map[$server_lang])) {
+    return $server_url_map[$server_lang];
+  }
+  return reset($server_url_map);
+}
+
+// Get the list of dinos and trophies using the DinoRPG API.
+// Returns the decoded JSON data, containing mainly $json->dinos
+// and $json->collections.
+function get_dinorpg_info($server_lang) {
   global $error_msg;
   if (! isset($_SESSION['token'])) {
-    return false;
+    // FIXME: error message
+    return null;
   }
-  $json = do_post_json('http://www.dinorpg.com/tid/graph/me',
+  $json = do_post_json(server_base_url($server_lang) . "/tid/graph/me",
     array(
       'access_token' => $_SESSION['token'],
       'fields' => 'collections,dinos.fields(life,maxLife,pos,canAct,canGather,equip,status,effects)'
@@ -17,49 +35,59 @@ function get_dinorpg_info() {
   );
   if (is_string($json)) {
     $error_msg = localized_msg([
-      "en" => "Error connecting to the DinoRPG server: $json",
-      "fr" => "Erreur de connexion au serveur DinoRPG : $json"
+      "en" => "Error connecting to the DinoRPG API server: $json",
+      "fr" => "Erreur de connexion au serveur API DinoRPG : $json"
     ]);
-    return false;
+    return null;
   }
   if (isset($json->error)) {
     $error_msg = localized_msg([
-      "en" => "Error fetching DinoRPG data:" . $json->error,
-      "fr" => "Erreur de récupération des informations DinoRPG :"
+      "en" => "Error fetching DinoRPG API data: " . $json->error,
+      "fr" => "Erreur de récupération des informations API DinoRPG : "
               . $json->error
     ]);
-    return false;
+    return null;
   }
-  if (! isset($json->id)) {
+  if (! isset($json->id) || ! is_numeric($json->id)) {
     $error_msg = localized_msg([
-      "en" => "Missing id field in DinoRPG data",
-      "fr" => "Champ id manquant dans les informations DinoRPG"
+      "en" => "Missing or invalid id field in DinoRPG API data",
+      "fr" => "Champ id manquant ou invalide dans les informations API DinoRPG"
     ]);
-    return false;
+    return null;
   }
-  if (! is_numeric($json->id)) {
-    $error_msg = localized_msg([
-      "en" => "Invalid DinoRPG data: id=" . $json->id,
-      "fr" => "Informations DinoRPG incorrectes : id=" . $json->id
-    ]);
-    return false;
+  $duid_var = $server_lang . '_duid';
+  if (! isset($_SESSION[$duid_var])
+      || ($_SESSION[$duid_var] != intval($json->id))) {
+    $_SESSION[$duid_var] = intval($json->id);
+    $mysqli = db_connect();
+    if ($mysqli) {
+      $sql_query = "UPDATE users SET $duid_var="
+	. db_quote_int($_SESSION[$duid_var])
+	. ", mtime=NOW() WHERE uid=" . db_quote_int($_SESSION['uid']);
+      if (! $mysqli->query($sql_query)) {
+	$error_msg = localized_msg([
+          "en" => "Error updating the database: " . $mysqli->error,
+          "fr" => "Erreur de mise à jour de la base de données : "
+	          . $mysqli->error
+        ]);
+	$mysqli->close();
+	return null;
+      }
+      $mysqli->close();
+    } else {
+      return null;
+    }
   }
-  $_SESSION['duid'] = intval($json->id);
-  $_SESSION['dinos'] = $json->dinos;
-  $_SESSION['collections'] = $json->collections;
-  return true;
+  return $json;
+//  $_SESSION['dinos'] = $json->dinos;
+//  $_SESSION['collections'] = $json->collections;
 }
 
 // Fetch the user profile page and extract the Flash vars for each dino.
-function parse_dinorpg_profile($url) {
+// Returns an array associating each dino with its Flash vars.
+function parse_dinorpg_profile($server_lang, $duid) {
   global $error_msg;
-  if (! isset($_SESSION['token'])) {
-    return false;
-  }
-  if (! isset($_SESSION['duid'])) {
-    return false;
-  }
-  $url = "http://www.dinorpg.com/user/" . $_SESSION['duid'];
+  $url = server_base_url($server_lang) . "/user/$duid";
   $context = stream_context_create(['http' => [
     'method' => 'GET',
     'timeout' => 20,
@@ -72,7 +100,7 @@ function parse_dinorpg_profile($url) {
       "en" => "Error connecting to the DinoRPG server: $err",
       "fr" => "Erreur de connexion au serveur DinoRPG : $err"
     ]);
-    return false;
+    return null;
   }
   $response = stream_get_contents($fp);
   if ($response === false) {
@@ -83,10 +111,11 @@ function parse_dinorpg_profile($url) {
       "fr" => "Erreur de connexion au serveur DinoRPG : $err"
     ]);
     fclose($fp);
-    return false;
+    return null;
   }
   fclose($fp);
   // Parse the page and look for Flash variables
+  // (This is a rather ugly hack.  This info should be part of the API.)
   $matches = [];
   $num = preg_match_all('|<script.*SWFObject.*dino\.swf.*"dino_(\d+)".*"FlashVars","data=(.*)".*</script>|Us',
 			$response, $matches);
@@ -97,11 +126,18 @@ function parse_dinorpg_profile($url) {
       $dinovars[$matches[1][$i]] = $matches[2][$i];
     }
   }
-  $_SESSION['dinovars'] = $dinovars;
-  return true;
+  return $dinovars;
 }
 
-// ...
+/*
+  TODO:
+  - load from db (dinos+collection, dinovars)
+  - save to db (idem)
+  - calls from main
+ */
+
+
+// ... TO BE REWRITTEN
 function update_db_user_info() {
   global $error_msg;
   if (! isset($_SESSION['uid']) || ! is_int($_SESSION['uid'])) {
@@ -153,13 +189,14 @@ function update_db_user_info() {
   return true;
 }
 
+
+// FIXME: test
+echo json_encode([ "session" => $_SESSION ], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+
 if (isset($_SESSION['uid'])) {
-  // Fetch all the info
-  if (get_dinorpg_info()) {
-    if (! isset ($_SESSION['dinovars'])) {
-      parse_dinorpg_profile();
-    }
-    update_db_user_info();
+  $json = get_dinorpg_info("fr");
+  if ($json) {
+    echo json_encode($json, JSON_UNESCAPED_UNICODE);
   }
 } else {
   $error_msg = localized_msg([
@@ -167,6 +204,12 @@ if (isset($_SESSION['uid'])) {
     "fr" => "Identité manquante. Vérifiez que vous êtes bien authentifié et que vous ne bloquez pas les cookies."
   ]);
 }
+
+/*
+    // FIXME: only fetch on request
+    parse_dinorpg_profile($server_url);
+    update_db_user_info();
+  }
 
 if (isset($error_msg)) {
   echo json_encode([ "error" => $error_msg ], JSON_UNESCAPED_UNICODE);
@@ -181,4 +224,7 @@ if (isset($error_msg)) {
 }
 
 //echo json_encode([ "session" => $_SESSION ]);
+//echo json_encode([ "session" => $_SESSION ], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+*/
+
 ?>

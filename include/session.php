@@ -83,6 +83,30 @@ function do_post_json($url, $params, $http_options = array()) {
   return json_decode($response);
 }
 
+// Connects to the database and sets $error_msg in case of failure.
+// Returns: $mysqli object or null in case of failure.
+function db_connect() {
+  $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+  if ($mysqli->connect_error) {
+    $error_msg = localized_msg([
+      "en" => "Error connecting to the database: " . $mysqli->error,
+      "fr" => "Erreur de connexion à la base de données : " . $mysqli->error
+    ]);
+    $mysqli->close();
+    return null;
+  }
+  if (! $mysqli->set_charset('utf8')) {
+    $error_msg = localized_msg([
+      "en" => "Error switching to UTF-8: " . $mysqli->error,
+      "fr" => "Erreur pour passer en UTF-8 : " . $mysqli->error
+    ]);
+    $mysqli->close();
+    return null;
+  }
+  return $mysqli;
+}
+
+// Quotes a string so that it can be included in a MySQL query string
 function db_quote_str($mysqli, $str, $if_unset = 'NULL') {
   if (isset($str)) {
     return "'" . $mysqli->real_escape_string($str) . "'";
@@ -91,6 +115,7 @@ function db_quote_str($mysqli, $str, $if_unset = 'NULL') {
   }
 }
 
+// Ensures that an integer is valid and can be included in a MySQL query string
 function db_quote_int($num, $if_invalid = 'NULL') {
   $val = strval($num);
   if (ctype_digit($val)) {
