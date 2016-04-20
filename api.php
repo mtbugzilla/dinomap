@@ -18,6 +18,15 @@ function server_base_url($server_lang) {
   return reset($server_url_map);
 }
 
+// UID for the server of the corresponding language
+function server_duid($server_lang) {
+  if (isset($_SESSION[$server_lang . '_duid'])) {
+    return $_SESSION[$server_lang . '_duid'];
+  } else {
+    return 0;
+  }
+}
+
 // Get the list of dinos and trophies using the DinoRPG API.
 // Returns the decoded JSON data, containing mainly $json->dinos
 // and $json->collections.
@@ -134,48 +143,63 @@ function parse_dinorpg_profile($server_lang, $duid) {
   - load from db (dinos+collection, dinovars)
   - save to db (idem)
   - calls from main
- */
+*/
 
-
-// ... TO BE REWRITTEN
-function update_db_user_info() {
+// ...
+// Returns: associative array with encoded json strings
+function db_load_data($server_lang) {
   global $error_msg;
-  if (! isset($_SESSION['uid']) || ! is_int($_SESSION['uid'])) {
+  $duid = server_duid($server_lang);
+  $mysqli = db_connect();
+  if (! $mysqli) {
+    return null;
+  }
+  $result = $mysqli->query("SELECT * FROM $server_lang WHERE duid=$duid");
+  if ($result && ($row = $result->fetch_assoc())) {
+    $mysqli->close();
+    return $row;
+  }
+  $error_msg = localized_msg([
+    "en" => "Error reading the database: " . $mysqli->error,
+    "fr" => "Erreur de lecture de la base de données : "
+            . $mysqli->error
+  ]);
+  $mysqli->close();
+  return null;
+}
+
+// ...
+// Returns: true if ok
+function db_save_data($server_lang, $dinos, $collections, $dinovars) {
+  global $error_msg;
+  $duid = server_duid($server_lang);
+  $mysqli = db_connect();
+  if (! $mysqli) {
     return false;
   }
-  if (! isset($_SESSION['duid']) || ! is_int($_SESSION['duid'])) {
-    return false;
+  // FIXME: split updates if only $dinos or $dinovars is set
+  $sql_query = "INSERT INTO $server_lang (duid, uid, dinos, collections, dinovars, dinos_time, vars_time) VALUES("
+    . db_quote_int($duid) . ', ' . db_quote_int($_SESSION['uid']);
+  if (isset($dinos)) {
+    $json_str = json_encode($dinos, JSON_UNESCAPED_UNICODE);
+    $sql_query .= ', ' . db_quote_str($mysqli, $json_str);
+  } else {
+    $sql_query .= ', NULL';
   }
-  $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-  if ($mysqli->connect_error) {
-    $error_msg = localized_msg([
-      "en" => "Error connecting to the database: " . $mysqli->error,
-      "fr" => "Erreur de connexion à la base de données : " . $mysqli->error
-    ]);
-    return false;
+  if (isset($collections)) {
+    $json_str = json_encode($collections, JSON_UNESCAPED_UNICODE);
+    $sql_query .= ', ' . db_quote_str($mysqli, $json_str);
+  } else {
+    $sql_query .= ', NULL';
   }
-  if (! $mysqli->set_charset('utf8')) {
-    $error_msg = localized_msg([
-      "en" => "Error switching to UTF-8: " . $mysqli->error,
-      "fr" => "Erreur pour passer en UTF-8 : " . $mysqli->error
-    ]);
-    return false;
+  if (isset($dinovars)) {
+    $json_str = json_encode($dinovars, JSON_UNESCAPED_UNICODE);
+    $sql_query .= ', ' . db_quote_str($mysqli, $json_str);
+  } else {
+    $sql_query .= ', NULL';
   }
-  $sql_query = 'UPDATE users SET duid=' . db_quote_int($_SESSION['duid']);
-  if (isset ($_SESSION['dinos'])) {
-    $json_str = json_encode($_SESSION['dinos'], JSON_UNESCAPED_UNICODE);
-    $sql_query .= ', dinos=' . db_quote_str($mysqli, $json_str);
-  }
-  if (isset ($_SESSION['collections'])) {
-    $json_str = json_encode($_SESSION['collections'], JSON_UNESCAPED_UNICODE);
-    $sql_query .= ', collections=' . db_quote_str($mysqli, $json_str);
-  }
-  if (isset ($_SESSION['dinovars'])) {
-    $json_str = json_encode($_SESSION['dinovars'], JSON_UNESCAPED_UNICODE);
-    $sql_query .= ', dinovars=' . db_quote_str($mysqli, $json_str);
-  }
-  $sql_query .= ', mtime=NOW(), atime=NOW() WHERE uid='
-                . db_quote_int($_SESSION['uid']);;
+  $sql_query .= ', NOW(), NOW()) ON DUPLICATE KEY UPDATE uid=VALUES(uid), dinos=VALUES(dinos), collections=VALUES(collections), dinovars=VALUES(dinovars), dinos_time=NOW(), vars_time=NOW()';
+
   //echo "QUERY: $sql_query\n";
   if (! $mysqli->query($sql_query)) {
     $error_msg = localized_msg([
@@ -196,7 +220,13 @@ echo json_encode([ "session" => $_SESSION ], JSON_UNESCAPED_UNICODE | JSON_PRETT
 if (isset($_SESSION['uid'])) {
   $json = get_dinorpg_info("fr");
   if ($json) {
-    echo json_encode($json, JSON_UNESCAPED_UNICODE);
+    //echo json_encode($json, JSON_UNESCAPED_UNICODE);
+    //db_save_data("fr", $json->dinos, $json->collections, null);
+  }
+  $duid = server_duid("fr");
+  if ($duid) {
+    $vars = parse_dinorpg_profile("fr", $duid);
+    db_save_data("fr", $json->dinos, $json->collections, $vars);
   }
 } else {
   $error_msg = localized_msg([
@@ -205,14 +235,9 @@ if (isset($_SESSION['uid'])) {
   ]);
 }
 
-/*
-    // FIXME: only fetch on request
-    parse_dinorpg_profile($server_url);
-    update_db_user_info();
-  }
-
 if (isset($error_msg)) {
   echo json_encode([ "error" => $error_msg ], JSON_UNESCAPED_UNICODE);
+/*
 } else {
   echo json_encode([
                     "uid" => $_SESSION['uid'],
@@ -221,10 +246,10 @@ if (isset($error_msg)) {
                     "collections" => $_SESSION['collections'],
                     "dinovars" => $_SESSION['dinovars']
 		    ], JSON_UNESCAPED_UNICODE);
+*/
 }
 
 //echo json_encode([ "session" => $_SESSION ]);
 //echo json_encode([ "session" => $_SESSION ], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-*/
 
 ?>
