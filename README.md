@@ -1,5 +1,7 @@
 # DinoMap
 
+:boom: **This code is under development.  It is not ready yet.** :boom:
+
 ## Description
 
 This is the source code for [DinoMap](http://dinomap.twinpedia.com/),
