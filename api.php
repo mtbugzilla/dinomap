@@ -1,4 +1,10 @@
 <?php
+//
+// Copyright (C) 2016 - Bugzilla @ Twinoid - This program is free software
+// distributed under the GNU Affero General Public License, verion 3 or later.
+// No warranty.  See the files LICENSE and/or README.md for details.
+//
+
 include_once('include/session.php');
 // This file generates JSON output, so we do not include header.php.
 header("Content-Type: application/json; charset=UTF-8");

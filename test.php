@@ -1,4 +1,9 @@
 <?php
+//
+// Copyright (C) 2015-16 - Bugzilla @ Twinoid - This program is free software
+// distributed under the GNU Affero General Public License, verion 3 or later.
+// No warranty.  See the files LICENSE and/or README.md for details.
+//
 include_once('include/session.php');
 $page_title = "Page de Test";
 include_once('include/header.php');

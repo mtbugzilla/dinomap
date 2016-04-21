@@ -1,4 +1,10 @@
 <?php
+//
+// Copyright (C) 2015-16 - Bugzilla @ Twinoid - This program is free software
+// distributed under the GNU Affero General Public License, verion 3 or later.
+// No warranty.  See the files LICENSE and/or README.md for details.
+//
+
 // This file is designed to be included before the beginning of the page.
 // It must modify the HTTP response headers and it is therefore important
 // that nothing is printed or echoed before it, not even an empty line.
