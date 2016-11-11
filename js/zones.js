@@ -1150,6 +1150,106 @@ var dinorpg_zones = [
     },
     // Zone 9 : Caushemesh
     {
+        "cgrav": {
+            "name": "Rocher de la gravité",
+            "desc": "Il fut un temps où des recherches étaient menées dans une usine de cette île. Un petit accident a pulvérisé la surface de cet îlot, le condensateur de gravité étant désormais hors de contrôle, un noyau s'est formé, recréant une nouvelle gravité artificielle. Ronde comme une petite planète, l'île flotte au gré des flux d'éther, il lui faut une heure pour faire le tour de toutes les destinations possibles.",
+            "x": 445,
+            "y": 355,
+            "icon": "default",
+            "links": [],
+            "linkscond": [
+                "(rocher1)", "cacrop",
+                "(rocher2)", "cpuits",
+                "(rocher3)", "cpyra1",
+                "(rocher4)", "ctecno"
+            ],
+        },
+        "cporte": {
+            "name": "Seuil de Caushemesh",
+            "desc": "Voilà enfin le visage de Caushemesh, cette nation si mystérieuse. Il est difficile de se rendre compte de ce qui fut autrefois le plus puissant état de Dinoland. Caushemesh ressemble désormais à un cratère explosé, baigné dans l'éther, source d'énergie infinie qui aura conduit à la catastrophe, donnant ce visage à ce monde.",
+            "x": 730,
+            "y": 530,
+            "icon": "door",
+            "links": [ "gotost", "cacrop" ],
+        },
+        "cacrop": {
+            "name": "Acropole Caushemeshenne",
+            "desc": "Une ville surplombe une fosse gigantesque rempli d'éther. L'Acropole est déserte, toutes les habitations sont condamnées, pourtant, les murs cloisonnées laissent échapper des bruits suspects, signe qu'il y a encore des habitants.",
+            "x": 650,
+            "y": 450,
+            "icon": "house",
+            "links": [ "cporte" ],
+            "linkscond": [
+                "(rocher1)", "cgrav",
+            ],
+        },
+        "cpuits": {
+            "name": "Puits éthéral",
+            "desc": "Cette installation, en roue libre désormais, permet de pomper l'éther et de le transformerer en énergie. L'éther ainsi collecté, permet d'alimenter grâce à d'épais tuyaux le besoin en énergie des différents complexes caushemeshens, dont le palais, qui consomme à lui seul plus de 80% de l'éther extrait.",
+            "x": 368,
+            "y": 475,
+            "icon": "default",
+            "links": [],
+            "linkscond": [
+                "(rocher2)", "cgrav",
+            ],
+        },
+        "ctecno": {
+            "name": "Technodôme englouti",
+            "desc": "",
+            "x": 510,
+            "y": 250,
+            "icon": "church",
+            "links": [ "ccrane" ],
+            "linkscond": [
+                "(rocher4)", "cgrav",
+            ],
+        },
+        "ccrane": {
+            "name": "Ile du crâne du démon",
+            "desc": "",
+            "x": 595,
+            "y": 150,
+            "icon": "default",
+            "links": [ "ctecno", "cextra" ],
+        },
+        "cextra": {
+            "name": "Complexe d'extraction",
+            "desc": "",
+            "x": 420,
+            "y": 170,
+            "icon": "default",
+            "links": [ "ccrane" ],
+        },
+        "cpyra1": {
+            "name": "Entrée de la Pyramide",
+            "desc": "",
+            "x": 330,
+            "y": 275,
+            "icon": "default",
+            "links": [ "cpyra2" ],
+            "linkscond": [
+                "(rocher3)", "cgrav",
+            ],
+        },
+        "cpyra2": {
+            "name": "Intérieur de la Pyramide",
+            "desc": "",
+            "x": 265,
+            "y": 170,
+            "icon": "castle",
+            "links": [ "cpyra1" ],
+        },
+        "gotost": {
+            "name": "Retourner aux Steppes Magnétiques",
+            "desc": "",
+            "exitzone": 5,
+            "exitid": "sporte",
+            "x": 765,
+            "y": 575,
+            "icon": "east",
+            "links": [ "cporte" ],
+        },
     },
     // Zone 10 : Test
     {
