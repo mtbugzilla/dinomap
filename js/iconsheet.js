@@ -59,13 +59,21 @@ function IconSheet(sourceUrl, iconNames, iconWidth, iconHeight, readyFunc) {
 // IconSheet - methods
 IconSheet.prototype = {
     draw: function(context, x, y, iconName) {
-        if (this.iconMap.hasOwnProperty(iconName)) {
-            context.drawImage(this.iconSheet,
-                              this.iconMap[iconName].x, this.iconMap[iconName].y,
-                              this.iconWidth, this.iconHeight,
-                              x, y,
-                              this.iconWidth, this.iconHeight);
-        }
+        if (this.isLoaded()) {
+            if (this.iconMap.hasOwnProperty(iconName)) {
+		context.drawImage(this.iconSheet,
+				  this.iconMap[iconName].x, this.iconMap[iconName].y,
+				  this.iconWidth, this.iconHeight,
+				  x, y,
+				  this.iconWidth, this.iconHeight);
+	    }
+        } else {
+            this.onLoad(function(c_context, c_x, c_y, c_iconName) {
+		return function() {
+		    this.draw(c_context, c_x, c_y, c_iconName);
+		};
+	    } (context, x, y, iconName));
+	}
         return this;
     },
     numIcons: function() {
