@@ -48,7 +48,7 @@ function DinoMap(selector, zoneId, icons, options) {
     if (selector) {
         $(selector).append(this.jCanvas);
     }
-    if (this.jCanvas.get(0).getContext == null) {
+    if (this.jCanvas.get(0).getContext === null) {
         throw new Error('Cannot get canvas context');
     }
     if (options) {
@@ -111,7 +111,7 @@ DinoMap.prototype = {
             //console.log('conditional paths from', pos, ':', zone[pos].links);
             if (zone[pos].linkscond) {
                 for (var i = 0; i < zone[pos].linkscond.length; i += 2) {
-                    var condition = zone[pos].linkscond[i];
+                    //var condition = zone[pos].linkscond[i];
                     var dest = zone[pos].linkscond[i + 1];
                     ctx.moveTo(mapX + zone[pos].x, mapY + zone[pos].y);
                     if (zone[dest]) {
@@ -227,12 +227,12 @@ DinoMap.prototype = {
             throw new RangeError('zoneId out of range: ' + this.zoneId);
         }
         var sourceUrl = 'images/' + zoneMaps[this.zoneId];
-        if (options && ((this.zoneId == 1 && options.alt_tchaud) ||
-                        (this.zoneId == 2 && options.alt_ileatl) ||
-                        (this.zoneId == 4 && options.alt_atdark) ||
-                        (this.zoneId == 5 && options.alt_magnet) ||
-                        (this.zoneId == 6 && options.alt_dnwest) ||
-                        (this.zoneId == 8 && options.alt_nimbao))) {
+        if (options && ((this.zoneId === 1 && options.alt_tchaud) ||
+                        (this.zoneId === 2 && options.alt_ileatl) ||
+                        (this.zoneId === 4 && options.alt_atdark) ||
+                        (this.zoneId === 5 && options.alt_magnet) ||
+                        (this.zoneId === 6 && options.alt_dnwest) ||
+                        (this.zoneId === 8 && options.alt_nimbao))) {
             sourceUrl = sourceUrl.replace('.jpg', '2.jpg');
         }
         this.mapImage = new Image();
@@ -307,37 +307,37 @@ DinoMap.prototype = {
  * @constructor
  */
 function HitSearch(selector) {
-        this.selector = selector;
-        this.rects = [];
-        this.mouseEnterList = [];
-        this.mouseLeaveList = [];
-        this.mouseMoveList = [];
-        // $(selector).enter
-        return this;
+    this.selector = selector;
+    this.rects = [];
+    this.mouseEnterList = [];
+    this.mouseLeaveList = [];
+    this.mouseMoveList = [];
+    // $(selector).enter
+    return this;
 }
 
 HitSearch.prototype = {
-        /** TODO
-         * @return {HitSearch} this HitSearch object
-         */
-        newRect: function(x, y, w, h) {
-                var rect = new HitSearchRectangle(this, x, y, w, h);
-                this.rects.push(rect);
-                return this;
-        },
-        /** TODO
-         * @return {Object} the current selector
-         */
-        getSelector: function() {
-                return this.selector;
-        },
-        /** TODO
-         * @return {HitSearch} this HitSearch object
-         */
-        setSelector: function(selector) {
-                this.selector = selector;
-                return this;
-        }
+    /** TODO
+     * @return {HitSearch} this HitSearch object
+     */
+    newRect: function(x, y, w, h) {
+        var rect = new HitSearchRectangle(this, x, y, w, h);
+        this.rects.push(rect);
+        return this;
+    },
+    /** TODO
+     * @return {Object} the current selector
+     */
+    getSelector: function() {
+        return this.selector;
+    },
+    /** TODO
+     * @return {HitSearch} this HitSearch object
+     */
+    setSelector: function(selector) {
+        this.selector = selector;
+        return this;
+    }
 };
 
 /**
@@ -346,32 +346,32 @@ HitSearch.prototype = {
  * @constructor
  */
 function HitSearchRectangle(hsParent, x, y, w, h) {
-        this.hsParent = hsParent;
-        this.x = x;
-        this.y = y;
-        this.w = w;
-        this.h = h;
-        this.mouseEnter = null;
-        this.mouseLeave = null;
-        this.mouseMove = null;
-        return this;
+    this.hsParent = hsParent;
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+    this.mouseEnter = null;
+    this.mouseLeave = null;
+    this.mouseMove = null;
+    return this;
 }
 
 // TODO
 HitSearchRectangle.prototype = {
-        /** TODO */
-        mouseenter: function(handler) {
-                this.mouseEnter = handler;
-                this.hsParent.mouseEnterList.push(this);
-        },
-        /** TODO */
-        mouseleave: function(handler) {
-                this.mouseLeave = handler;
-                this.hsParent.mouseLeaveList.push(this);
-        },
-        /** TODO */
-        mousemove: function(handler) {
-                this.mouseMove = handler;
-                this.hsParent.mouseMoveList.push(this);
-        }
+    /** TODO */
+    mouseenter: function(handler) {
+        this.mouseEnter = handler;
+        this.hsParent.mouseEnterList.push(this);
+    },
+    /** TODO */
+    mouseleave: function(handler) {
+        this.mouseLeave = handler;
+        this.hsParent.mouseLeaveList.push(this);
+    },
+    /** TODO */
+    mousemove: function(handler) {
+        this.mouseMove = handler;
+        this.hsParent.mouseMoveList.push(this);
+    }
 };

@@ -122,12 +122,12 @@ IconSheet.prototype = {
     /**
      * Add a callback function to be called once the image is loaded.
      *
-     * @param {iconSheetCB} [callback] - function called when the image is ready
+     * @param {iconSheetCB} readyFunc - function called when the image is ready
      * @return {IconSheet} this IconSheet object
      */
-    onLoad: function(callback) {
+    onLoad: function(readyFunc) {
         if (this.isLoaded()) {
-            callback.apply(this);
+            readyFunc.apply(this);
         } else {
             this.callWhenReady.push(readyFunc);
         }
