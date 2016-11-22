@@ -83,14 +83,14 @@ IconSheet.prototype = {
      * @param {number} x - X position of the origin of the icon
      * @param {number} y - Y position of the origin of the icon
      * @param {string} iconName - name of the icon to draw
-     * @returns {IconSheet} this IconSheet object
+     * @return {IconSheet} this IconSheet object
      */
     draw: function(context, x, y, iconName) {
         if (this.isLoaded()) {
             if (this.iconMap.hasOwnProperty(iconName)) {
                 context.drawImage(this.iconSheet,
                                   this.iconMap[iconName].x,
-				  this.iconMap[iconName].y,
+                                  this.iconMap[iconName].y,
                                   this.iconWidth, this.iconHeight,
                                   x, y,
                                   this.iconWidth, this.iconHeight);
@@ -107,12 +107,14 @@ IconSheet.prototype = {
     /**
      * Return the number of icons mapped to areas of the image.
      * This will return zero until the image is loaded.
+     * @return {number} number of named icons
      */
     numIcons: function() {
         return Object.keys(this.iconMap).length;
     },
     /**
      * Return true once the image is successfully loaded.
+     * @return {boolean} true if the image is ready
      */
     isLoaded: function() {
         return (this.iconSheetWidth > 0);
@@ -121,7 +123,7 @@ IconSheet.prototype = {
      * Add a callback function to be called once the image is loaded.
      *
      * @param {iconSheetCB} [callback] - function called when the image is ready
-     * @returns {IconSheet} this IconSheet object
+     * @return {IconSheet} this IconSheet object
      */
     onLoad: function(callback) {
         if (this.isLoaded()) {

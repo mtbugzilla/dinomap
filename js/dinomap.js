@@ -21,7 +21,7 @@
 /**
  * DinoMap creates an image (canvas) of the specified zone.
  *
- * @constructor 
+ * @constructor
  * @param {Object} selector - JQuery selector to which the canvas will be added
  * @param {number} zoneId - id of the zone to display: DinoMap.ROYDIN, etc.
  * @param {IconSheet} icons - icons to be drawn on the map
@@ -72,14 +72,20 @@ DinoMap.NIMBAO = 8;
 DinoMap.CAUSH = 9;
 
 DinoMap.prototype = {
-    /** Draw the map background, locations and paths between them */
+    /**
+     * Draw the map background, locations and paths between them
+     * @return {DinoMap} this DinoMap object
+     */
     drawAll: function() {
         this.drawBackground();
         this.drawPaths();
         this.drawLocations();
         return this;
     },
-    /** Draw the map background image in the canvas */
+    /**
+     * Draw the map background image in the canvas
+     * @return {DinoMap} this DinoMap object
+     */
     drawBackground: function() {
         this.context.globalAlpha = 1.0;
         this.context.clearRect(this.mapX, this.mapY,
@@ -87,7 +93,10 @@ DinoMap.prototype = {
         this.context.drawImage(this.mapImage, this.mapX, this.mapY);
         return this;
     },
-    /** Draw the permanent and conditional paths between locations */
+    /**
+     * Draw the permanent and conditional paths between locations
+     * @return {DinoMap} this DinoMap object
+     */
     drawPaths: function() {
         var zone = dinorpg_zones[this.zoneId];
         var ctx = this.context;
@@ -134,7 +143,10 @@ DinoMap.prototype = {
         ctx.globalAlpha = 1.0;
         return this;
     },
-    /** Draw the locations on the map with the appropriate icons and labels */
+    /**
+     * Draw the locations on the map with the appropriate icons and labels
+     * @return {DinoMap} this DinoMap object
+     */
     drawLocations: function() {
         var zone = dinorpg_zones[this.zoneId];
         var ctx = this.context;
@@ -194,7 +206,8 @@ DinoMap.prototype = {
         });
         return this;
     },
-    /** Load the background image for the map according to the specified
+    /**
+     * Load the background image for the map according to the specified
      * options, e.g. 'alt_tchaud' if the Karimbao tower should be displayed.
      */
     loadMapBackground: function(options) {
@@ -244,27 +257,44 @@ DinoMap.prototype = {
         })(this);
         this.mapImage.src = sourceUrl;
     },
-    /** Return the current zone id that was loaded for this map. */
+    /**
+     * Return the current zone id that was loaded for this map.
+     * @return {Number} the current zone id
+     */
     getZoneId: function() {
         return this.zoneId;
     },
-    /** Return the JQuery canvas object used - may be null if not loaded yet */
+    /**
+     * Return the jQuery canvas object used - may be null if not loaded yet
+     * @return {Object} jQuery canvas object
+     */
     getCanvas: function() {
         return this.jCanvas;
     },
-    /** Return the canvas context - may be null if image is not loaded yet */
+    /**
+     * Return the canvas context - may be null if image is not loaded yet
+     * @return {Object} the canvas context
+     */
     getContext: function() {
         return this.context;
     },
-    /** Return the width of the map image (if the image is loaded) */
+    /**
+     * Return the width of the map image (if the image is loaded)
+     * @return {Number} the width of the map image
+     */
     getWidth: function() {
         return this.mapWidth;
     },
-    /** Return the height of the map image (if the image is loaded) */
+    /**
+     * Return the height of the map image (if the image is loaded)
+     * @return {Number} the height of the map image
+     */
     getHeight: function() {
         return this.mapHeight;
     },
-    /** Change the map to a new zone with new options */
+    /**
+     * Change the map to a new zone with new options
+     */
     changeZone: function(newZoneId, options) {
         this.zoneId = newZoneId;
         this.loadMapBackground(options);
@@ -287,17 +317,23 @@ function HitSearch(selector) {
 }
 
 HitSearch.prototype = {
-        /** TODO */
+        /** TODO
+         * @return {HitSearch} this HitSearch object
+         */
         newRect: function(x, y, w, h) {
                 var rect = new HitSearchRectangle(this, x, y, w, h);
                 this.rects.push(rect);
                 return this;
         },
-        /** TODO */
+        /** TODO
+         * @return {Object} the current selector
+         */
         getSelector: function() {
                 return this.selector;
         },
-        /** TODO */
+        /** TODO
+         * @return {HitSearch} this HitSearch object
+         */
         setSelector: function(selector) {
                 this.selector = selector;
                 return this;

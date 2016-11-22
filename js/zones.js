@@ -33,7 +33,7 @@ var dinorpg_zone_names = [
     'Île aux Monstres',
     'Île Céleste (Nimbao)',
     'Caushemesh',
-    'Test',
+    'Test'
 ];
 
 /**
@@ -50,8 +50,8 @@ var dinorpg_zones = [
             'x': 100,
             'y': 230,
             'icon': 'castle',
-            'links': [ 'univ', 'fountj' ],
-            'linkscond': [ 'plaza', 'goplaz' ],
+            'links': ['univ', 'fountj'],
+            'linkscond': ['plaza', 'goplaz']
         },
         'fountj': {
             'name': 'La Fontaine de Jouvence',
@@ -59,7 +59,7 @@ var dinorpg_zones = [
             'x': 185,
             'y': 245,
             'icon': 'fount',
-            'links': [ 'papy', 'frcbrt', 'port', 'dnv' ],
+            'links': ['papy', 'frcbrt', 'port', 'dnv']
         },
         'papy': {
             'name': 'Chez Papy Joe',
@@ -67,7 +67,7 @@ var dinorpg_zones = [
             'x': 225,
             'y': 80,
             'icon': 'house',
-            'links': [ 'univ', 'fountj', 'frcbrt' ],
+            'links': ['univ', 'fountj', 'frcbrt']
         },
         'univ': {
             'name': 'L\'Université',
@@ -75,7 +75,7 @@ var dinorpg_zones = [
             'x': 120,
             'y': 150,
             'icon': 'church',
-            'links': [ 'papy', 'dnv', 'colesc' ],
+            'links': ['papy', 'dnv', 'colesc']
         },
         'colesc': {
             'name': 'Collines Escarpées',
@@ -83,8 +83,8 @@ var dinorpg_zones = [
             'x': 110,
             'y': 94,
             'icon': 'default',
-            'links': [ 'univ' ],
-            'linkscond': [ 'matesc', 'gogtc' ],
+            'links': ['univ'],
+            'linkscond': ['matesc', 'gogtc']
         },
         'frcbrt': {
             'name': 'Forcebrut',
@@ -92,7 +92,7 @@ var dinorpg_zones = [
             'x': 280,
             'y': 215,
             'icon': 'cavern',
-            'links': [ 'marche', 'fountj', 'papy' ],
+            'links': ['marche', 'fountj', 'papy']
         },
         'marche': {
             'name': 'Place du Marché',
@@ -100,7 +100,7 @@ var dinorpg_zones = [
             'x': 340,
             'y': 270,
             'icon': 'house',
-            'links': [ 'frcbrt' ],
+            'links': ['frcbrt']
         },
         'port': {
             'name': 'Port de Prêche',
@@ -108,13 +108,13 @@ var dinorpg_zones = [
             'x': 230,
             'y': 370,
             'icon': 'house',
-            'links': [ 'fountj' ],
+            'links': ['fountj'],
             'linkscond': [
                 '(10pv)', 'xxx_cimetiere',
                 '(os)', 'xxx_cimetiere',
                 'bouee', 'goiles',
-                'monisl', 'gomisl',
-            ],
+                'monisl', 'gomisl'
+            ]
         },
         'xxx_cimetiere': {
             'name': 'Cimetière du Crépuscule',
@@ -122,7 +122,7 @@ var dinorpg_zones = [
             'x': 340,
             'y': 360,
             'icon': 'default',
-            'links': [ 'port' ],
+            'links': ['port']
         },
         'gogtc': {
             'name': 'Escalader les montagnes',
@@ -132,7 +132,7 @@ var dinorpg_zones = [
             'x': 70,
             'y': 40,
             'icon': 'north',
-            'links': [],
+            'links': []
         },
         'goiles': {
             'name': 'Traverser à la Nage',
@@ -143,7 +143,7 @@ var dinorpg_zones = [
             'y': 410,
             'icon': 'swim',
             'links': [],
-            'labelx': -15,
+            'labelx': -15
         },
         'gomisl': {
             'name': 'Naviguer vers l\'Ile des monstres',
@@ -154,7 +154,7 @@ var dinorpg_zones = [
             'y': 410,
             'icon': 'east',
             'links': [],
-            'labelx': 30,
+            'labelx': 30
         },
         'goplaz': {
             'name': 'Aller à Dinoplaza',
@@ -165,8 +165,8 @@ var dinorpg_zones = [
             'y': 230,
             'icon': 'west',
             'links': [],
-            'labely': -30,
-        },
+            'labely': -30
+        }
     },
     // Zone 1 : Grand Tout Chaud
     {
@@ -176,7 +176,7 @@ var dinorpg_zones = [
             'x': 122,
             'y': 343,
             'icon': 'default',
-            'links': [ 'goplaz', 'forges' ],
+            'links': ['goplaz', 'forges']
         },
         'forges': {
             'name': 'Forges du Grand Tout Chaud',
@@ -184,8 +184,8 @@ var dinorpg_zones = [
             'x': 233,
             'y': 245,
             'icon': 'castle',
-            'links': [ 'vener', 'bslt', 'rashpk', 'fosslv' ],
-            'labelx': 20,
+            'links': ['vener', 'bslt', 'rashpk', 'fosslv'],
+            'labelx': 20
         },
         'rashpk': {
             'name': 'Ruines Ashpouk',
@@ -193,7 +193,7 @@ var dinorpg_zones = [
             'x': 109,
             'y': 275,
             'icon': 'house',
-            'links': [ 'forges' ],
+            'links': ['forges']
         },
         'fosslv': {
             'name': 'Fosselave',
@@ -201,7 +201,7 @@ var dinorpg_zones = [
             'x': 185,
             'y': 124,
             'icon': 'default',
-            'links': [ 'forges', 'tunel' ],
+            'links': ['forges', 'tunel']
         },
         'vener': {
             'name': 'Repaire du Vénérable',
@@ -209,10 +209,10 @@ var dinorpg_zones = [
             'x': 312,
             'y': 130,
             'icon': 'cavern',
-            'links': [ 'forges' ],
+            'links': ['forges'],
             'linkscond': [
-                '(tour)', 'tourbt',
-            ],
+                '(tour)', 'tourbt'
+            ]
         },
         'tunel': {
             'name': 'Tunnel sous la Branche',
@@ -220,10 +220,10 @@ var dinorpg_zones = [
             'x': 58,
             'y': 89,
             'icon': 'door',
-            'links': [ 'fosslv' ],
+            'links': ['fosslv'],
             'linkscond': [
-                'lantrn', 'stunel',
-            ],
+                'lantrn', 'stunel'
+            ]
         },
         'gorges': {
             'name': 'Gorges Profondes',
@@ -231,10 +231,10 @@ var dinorpg_zones = [
             'x': 35,
             'y': 213,
             'icon': 'mountain',
-            'links': [ 'gocamp' ],
+            'links': ['gocamp'],
             'linkscond': [
-                'lantrn', 'tunel',
-            ],
+                'lantrn', 'tunel'
+            ]
         },
         'tourbt': {
             'name': 'Tour de Karinbao',
@@ -245,9 +245,9 @@ var dinorpg_zones = [
             'links': [],
             'linkscond': [
                 '(tour)', 'vener',
-                '(tour)', 'toursk',
+                '(tour)', 'toursk'
             ],
-            'labely': -32,
+            'labely': -32
         },
         'goplaz': {
             'name': 'Descendre aux Collines Escarpées',
@@ -257,7 +257,7 @@ var dinorpg_zones = [
             'x': 170,
             'y': 385,
             'icon': 'south',
-            'links': [],
+            'links': []
         },
         'stunel': {
             'name': 'Entrer dans le Tunnel',
@@ -267,7 +267,7 @@ var dinorpg_zones = [
             'x': 53,
             'y': 154,
             'icon': 'cavern',
-            'links': [],
+            'links': []
         },
         'gocamp': {
             'name': 'Voyager vers le camp des Korgons',
@@ -277,7 +277,7 @@ var dinorpg_zones = [
             'x': 20,
             'y': 250,
             'icon': 'west',
-            'links': [],
+            'links': []
         },
         'toursk': {
             'name': 'Aller vers l\'île céleste',
@@ -287,8 +287,8 @@ var dinorpg_zones = [
             'x': 314,
             'y': 10,
             'icon': 'default',
-            'links': [],
-        },
+            'links': []
+        }
     },
     // Zone 2 : Îles Atlanteinées
     {
@@ -298,7 +298,7 @@ var dinorpg_zones = [
             'x': 492,
             'y': 89,
             'icon': 'default',
-            'links': [ 'goport', 'corail', 'marais' ],
+            'links': ['goport', 'corail', 'marais']
         },
         'corail': {
             'name': 'Mines de Corail',
@@ -306,10 +306,10 @@ var dinorpg_zones = [
             'x': 479,
             'y': 142,
             'icon': 'cavern',
-            'links': [ 'ilewkk', 'marais' ],
+            'links': ['ilewkk', 'marais'],
             'linkscond': [
-                '*kaura', 'totem',
-            ],
+                '*kaura', 'totem'
+            ]
         },
         'marais': {
             'name': 'Marais Collant',
@@ -318,10 +318,10 @@ var dinorpg_zones = [
             'x': 336,
             'y': 124,
             'icon': 'default',
-            'links': [ 'ilewkk', 'corail', 'chutes' ],
+            'links': ['ilewkk', 'corail', 'chutes'],
             'linkscond': [
-                '(nimbao)', 'xxx_broc',
-            ],
+                '(nimbao)', 'xxx_broc'
+            ]
         },
         'chutes': {
             'name': 'Chutes Mutantes',
@@ -329,12 +329,12 @@ var dinorpg_zones = [
             'x': 103,
             'y': 88,
             'icon': 'default',
-            'links': [ 'baobob', 'marais' ],
+            'links': ['baobob', 'marais'],
             'linkscond': [
                 'rasca', 'rasca',
                 'nenuph', 'gogrum',
-                'morsso', 'gosomb',
-            ],
+                'morsso', 'gosomb'
+            ]
         },
         'baobob': {
             'name': 'Chez M. Bao Bob',
@@ -342,7 +342,7 @@ var dinorpg_zones = [
             'x': 207,
             'y': 80,
             'icon': 'house',
-            'links': [ 'chutes' ],
+            'links': ['chutes']
         },
         'dome': {
             'name': 'Dôme Soulaflotte',
@@ -352,8 +352,8 @@ var dinorpg_zones = [
             'icon': 'castle',
             'links': [],
             'linkscond': [
-                'rasca', 'chutes',
-            ],
+                'rasca', 'chutes'
+            ]
         },
         'xxx_broc': {
             'name': 'Atelier de Broc',
@@ -363,8 +363,8 @@ var dinorpg_zones = [
             'icon': 'default',
             'links': [],
             'linkscond': [
-                '(nimbao)', 'marais',
-            ],
+                '(nimbao)', 'marais'
+            ]
         },
         'totem': {
             'name': 'Ile du Totem',
@@ -374,8 +374,8 @@ var dinorpg_zones = [
             'icon': 'default',
             'links': [],
             'linkscond': [
-                '*kaura', 'corail',
-            ],
+                '*kaura', 'corail'
+            ]
         },
         'goport': {
             'name': 'Nager jusqu\'au Port de Prêche',
@@ -385,7 +385,7 @@ var dinorpg_zones = [
             'x': 519,
             'y': 54,
             'icon': 'swim',
-            'links': [],
+            'links': []
         },
         'rasca': {
             'name': 'Appeler un Rascaphandre',
@@ -395,7 +395,7 @@ var dinorpg_zones = [
             'x': 110,
             'y': 127,
             'icon': 'rasca',
-            'links': [],
+            'links': []
         },
         'gogrum': {
             'name': 'Contourner les Chutes',
@@ -407,7 +407,7 @@ var dinorpg_zones = [
             'icon': 'water',
             'links': [],
             'labelx': 22,
-            'labely': 2,
+            'labely': 2
         },
         'gosomb': {
             'name': 'Plonger dans les Chutes',
@@ -419,8 +419,8 @@ var dinorpg_zones = [
             'icon': 'water',
             'links': [],
             'labelx': -10,
-            'labely': 5,
-        },
+            'labely': 5
+        }
     },
     // Zone 3 : Forêt de Grumel
     {
@@ -430,7 +430,7 @@ var dinorpg_zones = [
             'x': 339,
             'y': 330,
             'icon': 'cavern',
-            'links': [ 'chemin', 'gochut' ],
+            'links': ['chemin', 'gochut']
         },
         'chemin': {
             'name': 'Chemin Glauque',
@@ -438,7 +438,7 @@ var dinorpg_zones = [
             'x': 320,
             'y': 248,
             'icon': 'default',
-            'links': [ 'fleuve', 'collin' ],
+            'links': ['fleuve', 'collin']
         },
         'collin': {
             'name': 'Collines hantées',
@@ -446,7 +446,7 @@ var dinorpg_zones = [
             'x': 390,
             'y': 210,
             'icon': 'mountain',
-            'links': [ 'fleuve', 'chemin' ],
+            'links': ['fleuve', 'chemin']
         },
         'fleuve': {
             'name': 'Fleuve Jumin',
@@ -454,11 +454,11 @@ var dinorpg_zones = [
             'x': 335,
             'y': 118,
             'icon': 'default',
-            'links': [ 'collin', 'chemin' ],
+            'links': ['collin', 'chemin'],
             'linkscond': [
                 'palmes', 'jungle',
-                'palmes', 'camp',
-            ],
+                'palmes', 'camp'
+            ]
         },
         'camp': {
             'name': 'Camp Korgon',
@@ -466,10 +466,10 @@ var dinorpg_zones = [
             'x': 235,
             'y': 53,
             'icon': 'house',
-            'links': [ 'gogorg' ],
+            'links': ['gogorg'],
             'linkscond': [
-                'palmes', 'fleuve',
-            ],
+                'palmes', 'fleuve'
+            ]
         },
         'jungle': {
             'name': 'Jungle Sauvage',
@@ -477,10 +477,10 @@ var dinorpg_zones = [
             'x': 83,
             'y': 174,
             'icon': 'forest',
-            'links': [ 'garde' ],
+            'links': ['garde'],
             'linkscond': [
-                'palmes', 'fleuve',
-            ],
+                'palmes', 'fleuve'
+            ]
         },
         'garde': {
             'name': 'Porte de Sylvenoire',
@@ -488,10 +488,10 @@ var dinorpg_zones = [
             'x': 54,
             'y': 40,
             'icon': 'door',
-            'links': [ 'jungle' ],
+            'links': ['jungle'],
             'linkscond': [
-                'sylkey', 'gostep',
-            ],
+                'sylkey', 'gostep'
+            ]
         },
         'gochut': {
             'name': 'Retourner vers les Chutes',
@@ -501,7 +501,7 @@ var dinorpg_zones = [
             'x': 326,
             'y': 371,
             'icon': 'water',
-            'links': [],
+            'links': []
         },
         'gogorg': {
             'name': 'Retourner aux Gorges profondes',
@@ -511,7 +511,7 @@ var dinorpg_zones = [
             'x': 325,
             'y': 20,
             'icon': 'north',
-            'links': [],
+            'links': []
         },
         'gostep': {
             'name': 'Passer la Porte de Sylvenoire',
@@ -521,8 +521,8 @@ var dinorpg_zones = [
             'x': 10,
             'y': 10,
             'icon': 'door',
-            'links': [],
-        },
+            'links': []
+        }
     },
     // Zone 4 : Monde Sombre
     {
@@ -532,10 +532,10 @@ var dinorpg_zones = [
             'x': 207,
             'y': 80,
             'icon': 'house',
-            'links': [ 'dkchut' ],
+            'links': ['dkchut'],
             'linkscond': [
-                '(dk???)', 'fake2',
-            ],
+                '(dk???)', 'fake2'
+            ]
         },
         'dkchut': {
             'name': 'Le gouffre des âmes perdues',
@@ -543,12 +543,12 @@ var dinorpg_zones = [
             'x': 113,
             'y': 78,
             'icon': 'default',
-            'links': [ 'dkbao', 'dktow' ],
+            'links': ['dkbao', 'dktow'],
             'linkscond': [
                 '(gullom)', 'rechut',
-                '(gull??)', 'fake',
+                '(gull??)', 'fake'
             ],
-            'labelx': -18,
+            'labelx': -18
         },
         'dktow': {
             'name': 'La Tour Sombre',
@@ -556,7 +556,7 @@ var dinorpg_zones = [
             'x': 316,
             'y': 154,
             'icon': 'default',
-            'links': [ 'dkchut', 'gotow' ],
+            'links': ['dkchut', 'gotow']
         },
         'dktow2': {   // overlaps with 'gotow'
             'name': 'La Tour Sombre 1er étage',
@@ -564,8 +564,8 @@ var dinorpg_zones = [
             'x': 336,
             'y': 134,
             'icon': 'door',
-            'links': [ 'dktow', 'dktow3' ],
-            'labelx': 73,
+            'links': ['dktow', 'dktow3'],
+            'labelx': 73
         },
         'dktow3': {
             'name': 'La Tour Sombre 2ème étage',
@@ -573,9 +573,9 @@ var dinorpg_zones = [
             'x': 340,
             'y': 100,
             'icon': 'default',
-            'links': [ 'dktow2', 'dktow4' ],
+            'links': ['dktow2', 'dktow4'],
             'labelx': 90,
-            'labely': -2,
+            'labely': -2
         },
         'dktow4': {
             'name': '1er donjon Sombre',
@@ -583,9 +583,9 @@ var dinorpg_zones = [
             'x': 342,
             'y': 75,
             'icon': 'default',
-            'links': [ 'dktow3', 'dktowa', 'dktowb' ],
+            'links': ['dktow3', 'dktowa', 'dktowb'],
             'labelx': 68,
-            'labely': -8,
+            'labely': -8
         },
         'dktowa': {
             'name': '2ème donjon Sombre',
@@ -593,9 +593,9 @@ var dinorpg_zones = [
             'x': 325,
             'y': 60,
             'icon': 'default',
-            'links': [ 'dktow4', 'dktows' ],
+            'links': ['dktow4', 'dktows'],
             'labelx': -75,
-            'labely': -14,
+            'labely': -14
         },
         'dktowb': {
             'name': '3ème donjon Sombre',
@@ -603,9 +603,9 @@ var dinorpg_zones = [
             'x': 365,
             'y': 60,
             'icon': 'default',
-            'links': [ 'dktow4', 'dktows' ],
+            'links': ['dktow4', 'dktows'],
             'labelx': 75,
-            'labely': -14,
+            'labely': -14
         },
         'dktows': {
             'name': 'Dernier donjon Sombre',
@@ -613,9 +613,9 @@ var dinorpg_zones = [
             'x': 345,
             'y': 55,
             'icon': 'default',
-            'links': [ 'dktowa', 'dktowb' ],
+            'links': ['dktowa', 'dktowb'],
             'labelx': 75,
-            'labely': -30,
+            'labely': -30
         },
         'fake': {
             'name': '???',
@@ -625,8 +625,8 @@ var dinorpg_zones = [
             'icon': 'default',
             'links': [],
             'linkscond': [
-                '(gull??)', 'dkchut',
-            ],
+                '(gull??)', 'dkchut'
+            ]
         },
         'fake2': {
             'name': '????',
@@ -636,9 +636,9 @@ var dinorpg_zones = [
             'icon': 'default',
             'links': [],
             'linkscond': [
-                '(dk???)', 'dkbao',
+                '(dk???)', 'dkbao'
             ],
-            'labely': -33,
+            'labely': -33
         },
         'gotow': {
             'name': 'Entrer dans la Tour Sombre',
@@ -648,8 +648,8 @@ var dinorpg_zones = [
             'x': 336,
             'y': 134,
             'icon': 'door',
-            'links': [ 'dktow' ],
-            'labelx': 65,
+            'links': ['dktow'],
+            'labelx': 65
         },
         'rechut': {
             'name': 'Retourner vers la surface',
@@ -659,8 +659,8 @@ var dinorpg_zones = [
             'x': 70,
             'y': 40,
             'icon': 'water',
-            'links': [],
-        },
+            'links': []
+        }
     },
     // Zone 5 : Steppes Magnétiques
     {
@@ -670,7 +670,7 @@ var dinorpg_zones = [
             'x': 801,
             'y': 464,
             'icon': 'forest',
-            'links': [ 'scross', 'svill', 'gosylv' ],
+            'links': ['scross', 'svill', 'gosylv']
         },
         'scross': {
             'name': 'Croisée des nomades',
@@ -678,7 +678,7 @@ var dinorpg_zones = [
             'x': 795,
             'y': 325,
             'icon': 'default',
-            'links': [ 'senter', 'scanyo', 'sking' ],
+            'links': ['senter', 'scanyo', 'sking']
         },
         'svill': {
             'name': 'Avant-poste Rocky',
@@ -686,7 +686,7 @@ var dinorpg_zones = [
             'x': 945,
             'y': 370,
             'icon': 'house',
-            'links': [ 'senter', 'sking' ],
+            'links': ['senter', 'sking']
         },
         'sking': {
             'name': 'Citadelle du Roi',
@@ -694,7 +694,7 @@ var dinorpg_zones = [
             'x': 775,
             'y': 226,
             'icon': 'castle',
-            'links': [ 'stowr1', 'svill', 'scross', 'spylon' ],
+            'links': ['stowr1', 'svill', 'scross', 'spylon']
         },
         'spylon': {
             'name': 'Pylônes de Magnétite',
@@ -702,7 +702,7 @@ var dinorpg_zones = [
             'x': 580,
             'y': 190,
             'icon': 'default',
-            'links': [ 'sking', 'slake', 'stowr2' ],
+            'links': ['sking', 'slake', 'stowr2']
         },
         'slake': {
             'name': 'Syphon siffleur',
@@ -710,11 +710,11 @@ var dinorpg_zones = [
             'x': 410,
             'y': 270,
             'icon': 'default',
-            'links': [ 'spylon', 'scanyo', 'stowr3' ],
+            'links': ['spylon', 'scanyo', 'stowr3'],
             'linkscond': [
                 '(steppes?)', 'sband1',
-                '*magnet', 'sinto2',
-            ],
+                '*magnet', 'sinto2'
+            ]
         },
         'scanyo': {
             'name': 'Sentiers de Toutemba',
@@ -722,7 +722,7 @@ var dinorpg_zones = [
             'x': 616,
             'y': 356,
             'icon': 'default',
-            'links': [ 'scross', 'slake' ],
+            'links': ['scross', 'slake']
         },
         'stowr1': {
             'name': 'Dévoreuse de l\'Est',
@@ -730,7 +730,7 @@ var dinorpg_zones = [
             'x': 950,
             'y': 146,
             'icon': 'forest',
-            'links': [ 'sking' ],
+            'links': ['sking']
         },
         'stowr2': {
             'name': 'Dévoreuse du Nord',
@@ -738,7 +738,7 @@ var dinorpg_zones = [
             'x': 496,
             'y': 70,
             'icon': 'forest',
-            'links': [ 'spylon' ],
+            'links': ['spylon']
         },
         'stowr3': {
             'name': 'Dévoreuse de l\'Ouest',
@@ -746,7 +746,7 @@ var dinorpg_zones = [
             'x': 353,
             'y': 416,
             'icon': 'forest',
-            'links': [ 'slake' ],
+            'links': ['slake']
         },
         'sband1': {
             'name': 'Taudis des Zaxa',
@@ -754,10 +754,10 @@ var dinorpg_zones = [
             'x': 156,
             'y': 276,
             'icon': 'cavern',
-            'links': [ 'sband3', 'sband2' ],
+            'links': ['sband3', 'sband2'],
             'linkscond': [
-                '(steppes?)', 'slake',
-            ],
+                '(steppes?)', 'slake'
+            ]
         },
         'sband2': {
             'name': 'Camp des Emmemma',
@@ -765,10 +765,10 @@ var dinorpg_zones = [
             'x': 70,
             'y': 172,
             'icon': 'cavern',
-            'links': [ 'sband1' ],
+            'links': ['sband1'],
             'linkscond': [
-                '(brouillard?)', 'sporte',
-            ],
+                '(brouillard?)', 'sporte'
+            ]
         },
         'sband3': {
             'name': 'Campement des Mattmût',
@@ -776,10 +776,10 @@ var dinorpg_zones = [
             'x': 40,
             'y': 356,
             'icon': 'cavern',
-            'links': [ 'sband1', 'sband2' ],
+            'links': ['sband1', 'sband2'],
             'linkscond': [
-                '(teamw?)', 'scampw',
-            ],
+                '(teamw?)', 'scampw'
+            ]
         },
         'scampw': {
             'name': 'Repaire de la Team-W',
@@ -789,8 +789,8 @@ var dinorpg_zones = [
             'icon': 'house',
             'links': [],
             'linkscond': [
-                '(teamw?)', 'sband3',
-            ],
+                '(teamw?)', 'sband3'
+            ]
         },
         'scaush': {
             'name': 'Confins des Steppes',
@@ -801,8 +801,8 @@ var dinorpg_zones = [
             'links': [],
             'linkscond': [
                 '*magnet', 'slake',
-                '(brouillard?)', 'sporte',
-            ],
+                '(brouillard?)', 'sporte'
+            ]
         },
         'sporte': {
             'name': ' Portes de Caushemesh',
@@ -813,8 +813,8 @@ var dinorpg_zones = [
             'links': [],
             'linkscond': [
                 '(brouillard?)', 'scaush',
-                '(brouillard?)', 'sband2',
-            ],
+                '(brouillard?)', 'sband2'
+            ]
         },
         'gosylv': {
             'name': 'Retourner à la Forêt de Grumhel',
@@ -824,7 +824,7 @@ var dinorpg_zones = [
             'x': 850,
             'y': 485,
             'icon': 'forest',
-            'links': [],
+            'links': []
         },
         'sinto2': {
             'name': 'S\'approcher du Syphon',
@@ -835,8 +835,8 @@ var dinorpg_zones = [
             'y': 250,
             'icon': 'default',
             'links': [],
-            'labely': -32,
-        },
+            'labely': -32
+        }
     },
     // Zone 6 : Ouest de Dinoville
     {
@@ -846,7 +846,7 @@ var dinorpg_zones = [
             'x': 340,
             'y': 390,
             'icon': 'house',
-            'links': [ 'clinik', 'godnv', 'villa', 'dcine' ],
+            'links': ['clinik', 'godnv', 'villa', 'dcine']
         },
         'clinik': {
             'name': 'Clinique de Dinoville',
@@ -854,7 +854,7 @@ var dinorpg_zones = [
             'x': 405,
             'y': 260,
             'icon': 'clinik',
-            'links': [ 'dplaza', 'dcine' ],
+            'links': ['dplaza', 'dcine']
         },
         'dcine': {
             'name': 'Cinéma Paradino',
@@ -862,8 +862,8 @@ var dinorpg_zones = [
             'x': 260,
             'y': 320,
             'icon': 'cavern',
-            'links': [ 'clinik', 'dplaza', 'villa' ],
-            'linkscond': [ '(roi1)', 'poste' ],
+            'links': ['clinik', 'dplaza', 'villa'],
+            'linkscond': ['(roi1)', 'poste']
         },
         'villa': {
             'name': 'Villa',
@@ -871,7 +871,7 @@ var dinorpg_zones = [
             'x': 185,
             'y': 385,
             'icon': 'house',
-            'links': [ 'dplaza', 'dcine' ],
+            'links': ['dplaza', 'dcine']
         },
         'poste': {
             'name': 'Poste de garde',
@@ -882,8 +882,8 @@ var dinorpg_zones = [
             'links': [],
             'linkscond': [
                 '(roi1)', 'dcine',
-                '(roi2)', 'xxx_chateau',
-            ],
+                '(roi2)', 'xxx_chateau'
+            ]
         },
         'xxx_chateau': {
             'name': 'Château de Dinoville',
@@ -893,8 +893,8 @@ var dinorpg_zones = [
             'icon': 'castle',
             'links': [],
             'linkscond': [
-                '(roi2)', 'poste',
-            ],
+                '(roi2)', 'poste'
+            ]
         },
         'godnv': {
             'name': 'Retourner à Dinoville',
@@ -904,8 +904,8 @@ var dinorpg_zones = [
             'x': 380,
             'y': 348,
             'icon': 'east',
-            'links': [],
-        },
+            'links': []
+        }
     },
     // Zone 7 : Île aux Monstres
     {
@@ -915,7 +915,7 @@ var dinorpg_zones = [
             'x': 102,
             'y': 85,
             'icon': 'default',
-            'links': [ 'bkport', 'mvoutp' ],
+            'links': ['bkport', 'mvoutp']
         },
         'mvoutp': {
             'name': 'Avant-Poste Végétox',
@@ -923,8 +923,8 @@ var dinorpg_zones = [
             'x': 145,
             'y': 145,
             'icon': 'default',
-            'links': [ 'mvpalc', 'mport' ],
-            'labelx': -25,
+            'links': ['mvpalc', 'mport'],
+            'labelx': -25
         },
         'mvpalc': {
             'name': 'Palais d\'Antraxov',
@@ -932,7 +932,7 @@ var dinorpg_zones = [
             'x': 185,
             'y': 190,
             'icon': 'default',
-            'links': [ 'mcelit', 'mvoutp' ],
+            'links': ['mcelit', 'mvoutp']
         },
         'mcelit': {
             'name': 'Camp d\'Elit',
@@ -940,7 +940,7 @@ var dinorpg_zones = [
             'x': 260,
             'y': 210,
             'icon': 'cavern',
-            'links': [ 'mcuzco', 'mvpalc' ],
+            'links': ['mcuzco', 'mvpalc']
         },
         'mcuzco': {
             'name': 'Ruines de Cuzcous',
@@ -951,8 +951,8 @@ var dinorpg_zones = [
             'links': [],
             'linkscond': [
                 '(cuz1)', 'mforst',
-                '(cuz2)', 'mcelit',
-            ],
+                '(cuz2)', 'mcelit'
+            ]
         },
         'mforst': {
             'name': 'Forêt Kaze Kami',
@@ -960,11 +960,11 @@ var dinorpg_zones = [
             'x': 225,
             'y': 135,
             'icon': 'default',
-            'links': [ 'mfpalc' ],
+            'links': ['mfpalc'],
             'linkscond': [
-                '(cuz1)', 'mcuzco',
+                '(cuz1)', 'mcuzco'
             ],
-            'labelx': 10,
+            'labelx': 10
         },
         'mfpalc': {
             'name': 'Palais du Grotox',
@@ -972,8 +972,8 @@ var dinorpg_zones = [
             'x': 210,
             'y': 85,
             'icon': 'default',
-            'links': [ 'mforst', 'mfoutp' ],
-            'labelx': 20,
+            'links': ['mforst', 'mfoutp'],
+            'labelx': 20
         },
         'mfoutp': {
             'name': 'Avant-Poste Frutox',
@@ -981,7 +981,7 @@ var dinorpg_zones = [
             'x': 167,
             'y': 108,
             'icon': 'default',
-            'links': [ 'mfpalc', 'mforst', 'mvoutp', 'mport' ],
+            'links': ['mfpalc', 'mforst', 'mvoutp', 'mport']
         },
         'bkport': {
             'name': 'Retourner au Port de Prêche',
@@ -991,8 +991,8 @@ var dinorpg_zones = [
             'x': 35,
             'y': 25,
             'icon': 'west',
-            'links': [],
-        },
+            'links': []
+        }
     },
     // Zone 8 : Île Céleste (Nimbao)
     {
@@ -1002,7 +1002,7 @@ var dinorpg_zones = [
             'x': 95,
             'y': 360,
             'icon': 'default',
-            'links': [],
+            'links': []
         },
         'ipont': {
             'name': 'Pont',
@@ -1010,7 +1010,7 @@ var dinorpg_zones = [
             'x': 180,
             'y': 295,
             'icon': 'default',
-            'links': [],
+            'links': []
         },
         'iporte': {
             'name': 'Porte du niveau supérieur',
@@ -1018,7 +1018,7 @@ var dinorpg_zones = [
             'x': 322,
             'y': 260,
             'icon': 'cavern',
-            'links': [],
+            'links': []
         },
         'icite': {
             'name': 'Cité Arboris',
@@ -1026,7 +1026,7 @@ var dinorpg_zones = [
             'x': 460,
             'y': 210,
             'icon': 'castle',
-            'links': [],
+            'links': []
         },
         'ilacro': {
             'name': 'Lac céleste',
@@ -1034,7 +1034,7 @@ var dinorpg_zones = [
             'x': 392,
             'y': 343,
             'icon': 'default',
-            'links': [],
+            'links': []
         },
         'ilac': {
             'name': 'Chutes du nirvana',
@@ -1042,7 +1042,7 @@ var dinorpg_zones = [
             'x': 310,
             'y': 410,
             'icon': 'default',
-            'links': [],
+            'links': []
         },
         'iplain': {
             'name': 'Plaines enneigées',
@@ -1050,7 +1050,7 @@ var dinorpg_zones = [
             'x': 160,
             'y': 180,
             'icon': 'default',
-            'links': [],
+            'links': []
         },
         'isnow2': {
             'name': 'Bois givrés',
@@ -1059,7 +1059,7 @@ var dinorpg_zones = [
             'y': 150,
             'icon': 'forest',
             'links': [],
-            'labelx': 20,
+            'labelx': 20
         },
         'imont': {
             'name': 'Mont sacré d\'Everouest',
@@ -1068,7 +1068,7 @@ var dinorpg_zones = [
             'y': 150,
             'icon': 'mountain',
             'links': [],
-            'labelx': -40,
+            'labelx': -40
         },
         'ihaut': {
             'name': 'Sommet du Mont sacré',
@@ -1076,7 +1076,7 @@ var dinorpg_zones = [
             'x': 90,
             'y': 100,
             'icon': 'cavern',
-            'links': [],
+            'links': []
         },
         'prison': {
             'name': 'Priranèse',
@@ -1084,7 +1084,7 @@ var dinorpg_zones = [
             'x': 580,
             'y': 305,
             'icon': 'cavern',
-            'links': [],
+            'links': []
         },
         'ilac2': {
             'name': 'Aile Ouest du Dragon',
@@ -1092,7 +1092,7 @@ var dinorpg_zones = [
             'x': 550,
             'y': 380,
             'icon': 'default',
-            'links': [],
+            'links': []
         },
         'voie': {
             'name': 'chemin vers l\'Observatoire',
@@ -1100,10 +1100,10 @@ var dinorpg_zones = [
             'x': 465,
             'y': 132,
             'icon': 'default',
-            'links': [ 'observ', 'icite' ],
+            'links': ['observ', 'icite'],
             'linkscond': [
-                '(tour)', 'tourup',
-            ],
+                '(tour)', 'tourup'
+            ]
         },
         'observ': {
             'name': 'Observatoire',
@@ -1111,7 +1111,7 @@ var dinorpg_zones = [
             'x': 550,
             'y': 70,
             'icon': 'church',
-            'links': [],
+            'links': []
         },
         'ville': {
             'name': 'Quartier luxuriant',
@@ -1119,7 +1119,7 @@ var dinorpg_zones = [
             'x': 322,
             'y': 200,
             'icon': 'default',
-            'links': [],
+            'links': []
         },
         'ville2': {
             'name': 'Quartier exubérant',
@@ -1127,7 +1127,7 @@ var dinorpg_zones = [
             'x': 340,
             'y': 140,
             'icon': 'default',
-            'links': [],
+            'links': []
         },
         'sommet': {
             'name': 'chemin vers le Palais',
@@ -1135,7 +1135,7 @@ var dinorpg_zones = [
             'x': 270,
             'y': 90,
             'icon': 'default',
-            'links': [],
+            'links': []
         },
         'palais': {
             'name': 'Palais de l\'Archidorogon',
@@ -1143,7 +1143,7 @@ var dinorpg_zones = [
             'x': 320,
             'y': 55,
             'icon': 'castle',
-            'links': [],
+            'links': []
         },
         'tourup': {
             'name': 'Aller vers le Sommet de la Tour de Karinbao',
@@ -1154,8 +1154,8 @@ var dinorpg_zones = [
             'y': 120,
             'icon': 'default',
             'links': [],
-            'labely': -32,
-        },
+            'labely': -32
+        }
     },
     // Zone 9 : Caushemesh
     {
@@ -1171,7 +1171,7 @@ var dinorpg_zones = [
                 '(rocher2)', 'cpuits',
                 '(rocher3)', 'cpyra1',
                 '(rocher4)', 'ctecno'
-            ],
+            ]
         },
         'cporte': {
             'name': 'Seuil de Caushemesh',
@@ -1179,7 +1179,7 @@ var dinorpg_zones = [
             'x': 730,
             'y': 530,
             'icon': 'door',
-            'links': [ 'gotost', 'cacrop' ],
+            'links': ['gotost', 'cacrop']
         },
         'cacrop': {
             'name': 'Acropole Caushemeshenne',
@@ -1187,10 +1187,10 @@ var dinorpg_zones = [
             'x': 650,
             'y': 450,
             'icon': 'house',
-            'links': [ 'cporte' ],
+            'links': ['cporte'],
             'linkscond': [
-                '(rocher1)', 'cgrav',
-            ],
+                '(rocher1)', 'cgrav'
+            ]
         },
         'cpuits': {
             'name': 'Puits éthéral',
@@ -1200,8 +1200,8 @@ var dinorpg_zones = [
             'icon': 'default',
             'links': [],
             'linkscond': [
-                '(rocher2)', 'cgrav',
-            ],
+                '(rocher2)', 'cgrav'
+            ]
         },
         'ctecno': {
             'name': 'Technodôme englouti',
@@ -1209,10 +1209,10 @@ var dinorpg_zones = [
             'x': 510,
             'y': 250,
             'icon': 'church',
-            'links': [ 'ccrane' ],
+            'links': ['ccrane'],
             'linkscond': [
-                '(rocher4)', 'cgrav',
-            ],
+                '(rocher4)', 'cgrav'
+            ]
         },
         'ccrane': {
             'name': 'Ile du crâne du démon',
@@ -1220,7 +1220,7 @@ var dinorpg_zones = [
             'x': 595,
             'y': 150,
             'icon': 'default',
-            'links': [ 'ctecno', 'cextra' ],
+            'links': ['ctecno', 'cextra']
         },
         'cextra': {
             'name': 'Complexe d\'extraction',
@@ -1228,7 +1228,7 @@ var dinorpg_zones = [
             'x': 420,
             'y': 170,
             'icon': 'default',
-            'links': [ 'ccrane' ],
+            'links': ['ccrane']
         },
         'cpyra1': {
             'name': 'Entrée de la Pyramide',
@@ -1236,10 +1236,10 @@ var dinorpg_zones = [
             'x': 330,
             'y': 275,
             'icon': 'default',
-            'links': [ 'cpyra2' ],
+            'links': ['cpyra2'],
             'linkscond': [
-                '(rocher3)', 'cgrav',
-            ],
+                '(rocher3)', 'cgrav'
+            ]
         },
         'cpyra2': {
             'name': 'Intérieur de la Pyramide',
@@ -1247,7 +1247,7 @@ var dinorpg_zones = [
             'x': 265,
             'y': 170,
             'icon': 'castle',
-            'links': [ 'cpyra1' ],
+            'links': ['cpyra1']
         },
         'gotost': {
             'name': 'Retourner aux Steppes Magnétiques',
@@ -1257,8 +1257,8 @@ var dinorpg_zones = [
             'x': 765,
             'y': 575,
             'icon': 'east',
-            'links': [ 'cporte' ],
-        },
+            'links': ['cporte']
+        }
     },
     // Zone 10 : Test
     {
@@ -1268,7 +1268,7 @@ var dinorpg_zones = [
             'x': 0,
             'y': 0,
             'icon': 'default',
-            'links': [],
-        },
-    },
+            'links': []
+        }
+    }
 ];
