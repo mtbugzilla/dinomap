@@ -16,9 +16,28 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-"use strict";
+'use strict';
 
-// IconSheet - constructor
+/**
+ * This callback type is called when the image for an IconSheet has been
+ * loaded and the names for all icons have been mapped to the corresponding
+ * areas in the image.
+ *
+ * @callback iconSheetCB
+ * @param {IconSheet} iconSheet - IconSheet object that called this function
+ */
+
+/**
+ * An IconSheet object can be used to draw named icons from an image
+ * containing a fixed grid of icons.
+ *
+ * @constructor
+ * @param {string} sourceUrl - URL of the source image containing the icons
+ * @param {string[]} iconNames - list of icon names in order of appearance
+ * @param {number} iconWidth - width of all icons
+ * @param {number} iconHeight - height of all icons
+ * @param {iconSheetCB} [readyFunc] - function called when the image is ready
+ */
 function IconSheet(sourceUrl, iconNames, iconWidth, iconHeight, readyFunc) {
     this.iconWidth = iconWidth;
     this.iconHeight = iconHeight;
@@ -38,11 +57,11 @@ function IconSheet(sourceUrl, iconNames, iconWidth, iconHeight, readyFunc) {
             obj.iconSheetHeight = this.naturalHeight;
             iconNames.forEach(function(name) {
                 obj.iconMap[name] = {
-                    "x": x,
-                    "y": y,
+                    'x': x,
+                    'y': y
                 };
                 x += iconWidth;
-                if (x >= obj.iconSheetWidth) {
+                if (x + iconWidth > obj.iconSheetWidth) {
                     x = 0;
                     y += iconHeight;
                 }
@@ -56,32 +75,54 @@ function IconSheet(sourceUrl, iconNames, iconWidth, iconHeight, readyFunc) {
     return this;
 }
 
-// IconSheet - methods
 IconSheet.prototype = {
+    /**
+     * Draw a named icon at the specified position in a canvas context
+     *
+     * @param {Object} context - canvas context
+     * @param {number} x - X position of the origin of the icon
+     * @param {number} y - Y position of the origin of the icon
+     * @param {string} iconName - name of the icon to draw
+     * @returns {IconSheet} this IconSheet object
+     */
     draw: function(context, x, y, iconName) {
         if (this.isLoaded()) {
             if (this.iconMap.hasOwnProperty(iconName)) {
-		context.drawImage(this.iconSheet,
-				  this.iconMap[iconName].x, this.iconMap[iconName].y,
-				  this.iconWidth, this.iconHeight,
-				  x, y,
-				  this.iconWidth, this.iconHeight);
-	    }
+                context.drawImage(this.iconSheet,
+                                  this.iconMap[iconName].x,
+				  this.iconMap[iconName].y,
+                                  this.iconWidth, this.iconHeight,
+                                  x, y,
+                                  this.iconWidth, this.iconHeight);
+            }
         } else {
             this.onLoad(function(c_context, c_x, c_y, c_iconName) {
-		return function() {
-		    this.draw(c_context, c_x, c_y, c_iconName);
-		};
-	    } (context, x, y, iconName));
-	}
+                return function() {
+                    this.draw(c_context, c_x, c_y, c_iconName);
+                };
+            } (context, x, y, iconName));
+        }
         return this;
     },
+    /**
+     * Return the number of icons mapped to areas of the image.
+     * This will return zero until the image is loaded.
+     */
     numIcons: function() {
         return Object.keys(this.iconMap).length;
     },
+    /**
+     * Return true once the image is successfully loaded.
+     */
     isLoaded: function() {
         return (this.iconSheetWidth > 0);
     },
+    /**
+     * Add a callback function to be called once the image is loaded.
+     *
+     * @param {iconSheetCB} [callback] - function called when the image is ready
+     * @returns {IconSheet} this IconSheet object
+     */
     onLoad: function(callback) {
         if (this.isLoaded()) {
             callback.apply(this);
