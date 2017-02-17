@@ -806,11 +806,11 @@ var dinorpg_zones = [
         },
         'sporte': {
             'name': ' Portes de Caushemesh',
-            'desc': '',
+            'desc': 'Caché la plupart du temps par les tempêtes de sables, une imposante porte se dresse dans le désert des steppes, au pied des monts de Caushesmesh. Unique point d\'entrée dans ce royaume mystérieux, elle empêche quiconque d\'y entrer, ou serait-ce d\'en sortir ?',
             'x': 70,
             'y': 30,
             'icon': 'door',
-            'links': [],
+            'links': [ 'gotoca' ],
             'linkscond': [
                 '(brouillard?)', 'scaush',
                 '(brouillard?)', 'sband2'
@@ -836,6 +836,16 @@ var dinorpg_zones = [
             'icon': 'default',
             'links': [],
             'labely': -32
+        }
+        'gotoca': {
+            'name': 'Gravir le mont Caushemesh',
+            'desc': '',
+            'exitzone': 9,
+            'exitid': 'cporte',
+            'x': 10,
+            'y': 10,
+            'icon': 'mountain',
+            'links': []
         }
     },
     // Zone 6 : Ouest de Dinoville
