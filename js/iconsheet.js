@@ -33,7 +33,8 @@
  *
  * @constructor
  * @param {string} sourceUrl - URL of the source image containing the icons
- * @param {string[]} iconNames - list of icon names in order of appearance
+ * @param {string[]|object} iconNames - list of icon names in order of
+ *   appearance or object {name1: {x: int, y: int, [width: int, height: int]}}
  * @param {number} iconWidth - width of all icons
  * @param {number} iconHeight - height of all icons
  * @param {iconSheetCB} [readyFunc] - function called when the image is ready
@@ -55,17 +56,32 @@ function IconSheet(sourceUrl, iconNames, iconWidth, iconHeight, readyFunc) {
             var y = 0;
             obj.iconSheetWidth = this.naturalWidth;
             obj.iconSheetHeight = this.naturalHeight;
-            iconNames.forEach(function(name) {
-                obj.iconMap[name] = {
-                    'x': x,
-                    'y': y
-                };
-                x += iconWidth;
-                if (x + iconWidth > obj.iconSheetWidth) {
-                    x = 0;
-                    y += iconHeight;
-                }
-            });
+            if (Array.isArray(iconNames)) {
+                iconNames.forEach(function(name) {
+                    obj.iconMap[name] = {
+                        'x': x,
+                        'y': y,
+                        'width': iconWidth,
+                        'height': iconHeight
+                    };
+                    x += iconWidth;
+                    if (x + iconWidth > obj.iconSheetWidth) {
+                        x = 0;
+                        y += iconHeight;
+                    }
+                });
+            } else if (typeof iconNames === 'object') {
+                Object.keys(iconNames).forEach(function(name) {
+                    obj.iconMap[name] = {
+                        'x': iconNames[name].x || 0,
+                        'y': iconNames[name].y || 0,
+                        'width': iconNames[name].width || iconWidth,
+                        'height': iconNames[name].height || iconHeight
+                    };
+                });
+            } else {
+                throw new TypeError("Invalid iconNames in IconSheet().");
+            }
             obj.callWhenReady.forEach(function(callback) {
                 callback.apply(obj);
             });
@@ -91,9 +107,12 @@ IconSheet.prototype = {
                 context.drawImage(this.iconSheet,
                                   this.iconMap[iconName].x,
                                   this.iconMap[iconName].y,
-                                  this.iconWidth, this.iconHeight,
-                                  x, y,
-                                  this.iconWidth, this.iconHeight);
+                                  this.iconMap[iconName].width,
+                                  this.iconMap[iconName].height,
+                                  x,
+                                  y,
+                                  this.iconMap[iconName].width,
+                                  this.iconMap[iconName].height);
             }
         } else {
             this.onLoad(function(c_context, c_x, c_y, c_iconName) {
