@@ -836,7 +836,7 @@ var dinorpg_zones = [
             'icon': 'default',
             'links': [],
             'labely': -32
-        }
+        },
         'gotoca': {
             'name': 'Gravir le mont Caushemesh',
             'desc': '',
@@ -845,7 +845,9 @@ var dinorpg_zones = [
             'x': 10,
             'y': 10,
             'icon': 'mountain',
-            'links': []
+            'links': [],
+            'labelx': 85,
+            'labely': -16
         }
     },
     // Zone 6 : Ouest de Dinoville
