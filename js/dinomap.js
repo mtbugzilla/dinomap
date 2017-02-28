@@ -1,6 +1,6 @@
 /*
     DinoMap - Interactive map for Dino-RPG
-    Copyright (C) 2016  Bugzilla@Twinoid (http://twinoid.com/user/148)
+    Copyright (C) 2016-2017 Bugzilla@Twinoid (http://twinoid.com/user/148)
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
@@ -91,6 +91,31 @@ DinoMap.prototype = {
         this.context.clearRect(this.mapX, this.mapY,
                                this.mapWidth, this.mapHeight);
         this.context.drawImage(this.mapImage, this.mapX, this.mapY);
+        if (this.zoneId === DinoMap.CAUSH) {
+            // special case for Caushemesh - big rock
+            this.icons.draw(this.context,
+                            this.mapX + 375 + Math.random() * 10,
+                            this.mapY + 290 + Math.random() * 10,
+                            "rocher");
+            // special case for Caushemesh - small moving rock
+            var ox = [ 390, 370, 510, 465 ];
+            var oy = [ 395, 290, 375, 285 ];
+            var ot = [
+                [ 2, 0, 3, 1 ], // Sunday
+                [ 0, 1, 2, 3 ], // Monday
+                [ 1, 2, 3, 0 ], // Tuesday
+                [ 2, 3, 1, 0 ], // Wednesday
+                [ 2, 3, 0, 1 ], // Thursday
+                [ 0, 2, 1, 3 ], // Friday
+                [ 2, 1, 0, 3 ]  // Saturday
+            ];
+            var now = new Date();
+            var n = ot[now.getDay()][Math.floor(now.getMinutes() / 15)];
+            this.icons.draw(this.context,
+                            this.mapX + ox[n] + Math.random() * 10,
+                            this.mapY + oy[n] + Math.random() * 10,
+                            "rocher-m");
+        }
         return this;
     },
     /**

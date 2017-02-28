@@ -1,6 +1,6 @@
 /*
     DinoMap - Interactive map for Dino-RPG
-    Copyright (C) 2016  Bugzilla@Twinoid (http://twinoid.com/user/148)
+    Copyright (C) 2016-2017  Bugzilla@Twinoid (http://twinoid.com/user/148)
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
@@ -58,12 +58,23 @@ function IconSheet(sourceUrl, iconNames, iconWidth, iconHeight, readyFunc) {
             obj.iconSheetHeight = this.naturalHeight;
             if (Array.isArray(iconNames)) {
                 iconNames.forEach(function(name) {
-                    obj.iconMap[name] = {
-                        'x': x,
-                        'y': y,
-                        'width': iconWidth,
-                        'height': iconHeight
-                    };
+                    if (typeof name !== 'object') {
+                        obj.iconMap[name] = {
+                            'x': x,
+                            'y': y,
+                            'width': iconWidth,
+                            'height': iconHeight
+                        };
+                    } else  if (name.name) {
+                        obj.iconMap[name.name] = {
+                            'x': name.x || 0,
+                            'y': name.y || 0,
+                            'width': name.width || iconWidth,
+                            'height': name.height || iconHeight
+                        };
+                    } else {
+                        throw new TypeError('Invalid iconNames in IconSheet().');
+                    }
                     x += iconWidth;
                     if (x + iconWidth > obj.iconSheetWidth) {
                         x = 0;
@@ -80,7 +91,7 @@ function IconSheet(sourceUrl, iconNames, iconWidth, iconHeight, readyFunc) {
                     };
                 });
             } else {
-                throw new TypeError("Invalid iconNames in IconSheet().");
+                throw new TypeError('Invalid iconNames in IconSheet().');
             }
             obj.callWhenReady.forEach(function(callback) {
                 callback.apply(obj);

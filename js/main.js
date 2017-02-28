@@ -1,6 +1,6 @@
 /*
     DinoMap - Interactive map for Dino-RPG
-    Copyright (C) 2016  Bugzilla@Twinoid (http://twinoid.com/user/148)
+    Copyright (C) 2016-2017  Bugzilla@Twinoid (http://twinoid.com/user/148)
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
@@ -22,13 +22,19 @@
  * Initialization function (temporary, for debugging).
  */
 function init() {
-    var icons = new IconSheet('images/icons.png',
-                              ['default', 'house', 'church', 'castle',
-                               'cavern', 'door', 'fount', 'rasca',
-                               'swim', 'mountain', 'forest', 'water',
-                               'north', 'west', 'south', 'east',
-                               'clinik'
-                              ], 25, 25);
+    var iconBaseNames = [ 'default', 'house', 'church', 'castle',
+                          'cavern', 'door', 'fount', 'rasca', 'swim',
+                          'mountain', 'forest', 'water', 'north',
+                          'west', 'south', 'east', 'clinik' ];
+    var iconNames = Array.concat(
+        iconBaseNames,
+        iconBaseNames.map(function(n) { return n + "-hl1"; }),
+        iconBaseNames.map(function(n) { return n + "-hl2"; }),
+        iconBaseNames.map(function(n) { return n + "-red"; })
+    );
+    iconNames.push({ name: "rocher", x: 0, y: 100, width: 135, height: 115 });
+    iconNames.push({ name: "rocher-m", x: 135, y: 100, width: 20, height: 31 });
+    var icons = new IconSheet('images/icons.png', iconNames, 25, 25);
     var test0 = new DinoMap('#ttt', 0, icons);
     var test1 = new DinoMap('#ttt', 1, icons, { 'alt_tchaud': 1 });
     var test2 = new DinoMap('#ttt', 2, icons);
